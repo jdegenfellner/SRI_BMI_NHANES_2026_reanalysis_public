@@ -26,8 +26,8 @@ ann[, lab := sprintf("slope = %.2f\nr = %.2f\nn = %d", slope, r, n)]
 p <- ggplot(L, aes(hand, pkg)) +
   geom_point(alpha=.14, size=.45, colour="grey25") +
   geom_abline(slope=1, intercept=0, linetype="dashed", colour="red") +
-  geom_smooth(method="loess", se=FALSE, colour="orange", linewidth=.7, linetype="dotted", formula=y~x) +
   geom_smooth(method="lm",    se=TRUE,  colour="blue",   linewidth=.8, formula=y~x) +
+  geom_smooth(method="loess", se=FALSE, colour="darkorange", linewidth=1.0, linetype="dotted", formula=y~x) +
   geom_text(data=ann, aes(x=8, y=92, label=lab), hjust=0, vjust=1, size=3.1, colour="black") +
   facet_grid(calc ~ days) +
   coord_cartesian(xlim=c(0,100), ylim=c(-20,100)) +

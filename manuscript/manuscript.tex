@@ -11,7 +11,7 @@
 \usepackage{xcolor}
 \usepackage{authblk}
 \usepackage{microtype}
-\usepackage[numbers,sort&compress]{natbib}
+\usepackage[round]{natbib}
 \usepackage{caption}
 \captionsetup[figure]{justification=centering}
 
@@ -39,38 +39,33 @@ under the standard calculators, and why.
 
 \noindent
 \textbf{Methods.} NHANES 2011--2014 provides a ready-made minute-level sleep/wake
-classification (the variable \texttt{PAXPREDM}). Raw sub-second accelerometry is
-also released, but feeding both packages the same minute-level classification
-holds the sleep-detection step fixed and isolates the SRI computation. On the
-byte-identical sleep/wake series of my published sample ($n=7085$) I recomputed the
-SRI with \texttt{GGIR} and \texttt{sleepreg} at package defaults and compared them
-to the published SRI (computed by hand with the Phillips formula). I then
-re-estimated the published survey-weighted $\log$-BMI model under each calculator,
-reporting multiplication factors with 95\% bootstrap confidence intervals. I also
-refitted the model split by recording completeness.
+classification (\texttt{PAXPREDM}); feeding both packages this same series holds
+sleep detection fixed and isolates the SRI computation. On the byte-identical series
+of my published sample ($n=7085$) I recomputed the SRI with \texttt{GGIR} and
+\texttt{sleepreg} at defaults and compared them to the published SRI (computed by
+hand with the Phillips formula). I then re-estimated the published survey-weighted
+$\log$-BMI model under each calculator, reporting multiplication factors with 95\%
+bootstrap confidence intervals, and refitted it split by recording completeness.
 
 \noindent
 \textbf{Results.} On identical input the calculators disagreed: package SRIs were
 about 7 median points lower, correlated $0.81$ (\texttt{GGIR}) and $0.67$
-(\texttt{sleepreg}) with the published SRI, reshuffled about half of participants across
-SRI quintiles, and \texttt{sleepreg}'s default 5-day minimum discarded 30\% of the
+(\texttt{sleepreg}) with the published SRI, reshuffled about half of participants
+across quintiles, and \texttt{sleepreg}'s default 5-day minimum discarded 30\% of the
 sample. Every calculator preserved the inverse direction, but not the magnitude:
 the fully adjusted top-versus-bottom-quintile effect on BMI shrank from about
-$-5\%$ (original) to $-1.4\%$ (\texttt{sleepreg}). The divergence was structured,
-driven by how each package pairs days across a recording gap, and confined to
-incompletely recorded participants. Among the 60\% with seven
-consecutive days the effect was calculator-invariant (spread $0.008$), whereas the
-entire calculator dependence arose in the 40\% with a day gap, an instance of
-regression dilution from exposure measurement error.
+$-5\%$ to $-1.4\%$ (\texttt{sleepreg}). The divergence was structured, driven by how
+each package pairs days across a recording gap, and confined to incompletely
+recorded participants: among the 60\% with seven consecutive days the effect was
+calculator-invariant, whereas the entire calculator dependence arose in the 40\%
+with a day gap, an instance of regression dilution from exposure measurement error.
 
 \noindent
 \textbf{Conclusions.} The qualitative finding is robust to the calculator, but its
-effect size and the strength of sex/ethnic effect modification are
-calculator-dependent. This is a measurement-error phenomenon of incompletely
-recorded participants, not a property of the association. Authors should report the
-exact calculator, version and minimum-day/missing-data options, and present effect
-sizes with intervals. My results extend the RIRI recommendations to settings where
-all calculators share a fixed sleep/wake classification.
+effect size and sex/ethnic effect modification are calculator-dependent: a
+measurement-error phenomenon, not a property of the association. Authors should
+report the calculator, version and minimum-day/missing-data options, and present
+effect sizes with intervals.
 \end{abstract}
 
 \vspace{4pt}
@@ -580,59 +575,70 @@ more than one calculator as a sensitivity analysis: a step beyond RIRI's disclos
 checklist itself, but in keeping with its goal of reproducible SRI research
 \citep{czeisler2025}.
 
-\section*{Declarations}
+\section*{Acknowledgements}
+The author thanks the NHANES participants and the National Center for Health Statistics
+for collecting and releasing the data.
 
-\paragraph{Ethics approval and consent to participate.} This is a secondary analysis
-of de-identified, publicly available NHANES 2011--2014 data. The NHANES protocol was
-approved by the National Center for Health Statistics (NCHS) Research Ethics Review
-Board, and all participants gave written informed consent. No further ethics approval
-was required for this reanalysis.
+\section*{Author contributions}
+J\"urgen Degenfellner is the sole author: he conceived the study, performed all
+analyses, and wrote and approved the manuscript.
 
-\paragraph{Consent for publication.} Not applicable.
+\section*{Statements and declarations}
 
-\paragraph{Availability of data and materials.} All analyses use publicly available
-NHANES 2011--2014 data (\url{https://www.cdc.gov/nchs/nhanes/}). Code to reconstruct
-the sleep/wake series and reproduce every table and figure is openly available at
+\paragraph{Ethical considerations.} This is a secondary analysis of de-identified,
+publicly available NHANES 2011--2014 data. The NHANES protocol was approved by the
+National Center for Health Statistics (NCHS) Research Ethics Review Board. No further
+ethics approval was required for this reanalysis.
+
+\paragraph{Consent to participate.} All NHANES participants provided written informed
+consent at the time of the original survey.
+
+\paragraph{Consent for publication.} Not applicable; the study uses de-identified
+public data and reports no individually identifiable information.
+
+\paragraph{Declaration of conflicting interests.} The author declared no potential
+conflicts of interest with respect to the research, authorship, and/or publication of
+this article.
+
+\paragraph{Funding.} The author received no financial support for the research,
+authorship, and/or publication of this article.
+
+\paragraph{Data availability.} All analyses use publicly available NHANES 2011--2014
+data (\url{https://www.cdc.gov/nchs/nhanes/}). Code to reconstruct the sleep/wake series
+and reproduce every table and figure is openly available at
 \url{https://github.com/jdegenfellner/SRI_BMI_NHANES_2026_reanalysis_public}.
 
-\paragraph{Competing interests.} The author declares no competing interests.
-
-\paragraph{Funding.} The author received no specific funding for this work.
-
-\paragraph{Authors' contributions.} JD is the sole author: he conceived the study,
-performed the analyses, and wrote the manuscript. The author read and approved the
-final manuscript.
-
-\paragraph{Acknowledgements.} The author thanks the NHANES participants and the
-National Center for Health Statistics for collecting and releasing the data.
+\section*{ORCID iD}
+J\"urgen Degenfellner \url{https://orcid.org/0000-0001-6886-4583}
 
 \begin{thebibliography}{9}
-\bibitem[Phillips et al.(2017)]{phillips2017} Phillips AJK, Clerx WM, O'Brien CS, Sano A, Barger LK,
-Picard RW, et al. Irregular sleep/wake patterns are associated with poorer academic
-performance and delayed circadian and sleep/wake timing. Sci Rep. 2017;7:3216.
-\bibitem[Czeisler et al.(2025)]{czeisler2025} Czeisler M\'E, et al. Comparison of Sleep Regularity Index
-scores calculated by open-source packages and implications for outcomes research:
-rationale and design of the RIRI statement. Sleep. 2025;49(4):zsaf299.
-\bibitem[Windred et al.(2021)]{windred2021} Windred DP, Jones SE, Russell A, Burns AC, Chan P, Weedon MN,
-et al. Objective assessment of sleep regularity in 60,000 UK Biobank participants
-using an open-source package. Sleep. 2021;44(12):zsab254.
-\bibitem[Migueles et al.(2019)]{migueles2019} Migueles JH, Rowlands AV, Huber F, Sabia S, van Hees VT.
-GGIR: a research community-driven open source R package for generating physical
-activity and sleep outcomes from multi-day raw accelerometer data. J Meas Phys
-Behav. 2019;2(3):188--196.
-\bibitem[van Hees et al.(2015)]{vanhees2015} van Hees VT, Sabia S, Anderson KN, Denton SJ, Oliver J, Catt
-M, et al. A novel, open access method to assess sleep duration using a wrist-worn
-accelerometer. PLoS One. 2015;10(11):e0142533.
-\bibitem[Degenfellner et al.(2026)]{degenfellner2026} Degenfellner J, Schernhammer ES, Strohmaier S. Sex- and
-ethnic differences in the cross-sectional association between sleep regularity and
-obesity among US adults, NHANES 2011--2014. J Biol Rhythms. 2026;41(2):205--218.
+\bibitem[Czeisler et al.(2025)]{czeisler2025} Czeisler M\'E, et al. (2025) Comparison of
+Sleep Regularity Index scores calculated by open-source packages and implications for
+outcomes research: rationale and design of the RIRI statement. \emph{Sleep} 49(4): zsaf299.
+\bibitem[Degenfellner et al.(2026)]{degenfellner2026} Degenfellner J, Schernhammer ES,
+Strohmaier S (2026) Sex- and ethnic differences in the cross-sectional association between
+sleep regularity and obesity among US adults, NHANES 2011--2014. \emph{J Biol Rhythms}
+41(2): 205--218.
+\bibitem[Migueles et al.(2019)]{migueles2019} Migueles JH, Rowlands AV, Huber F, Sabia S,
+van Hees VT (2019) GGIR: a research community-driven open source R package for generating
+physical activity and sleep outcomes from multi-day raw accelerometer data.
+\emph{J Meas Phys Behav} 2(3): 188--196.
+\bibitem[Phillips et al.(2017)]{phillips2017} Phillips AJK, Clerx WM, O'Brien CS, Sano A,
+Barger LK, Picard RW, et al. (2017) Irregular sleep/wake patterns are associated with poorer
+academic performance and delayed circadian and sleep/wake timing. \emph{Sci Rep} 7: 3216.
+\bibitem[van Hees et al.(2015)]{vanhees2015} van Hees VT, Sabia S, Anderson KN, Denton SJ,
+Oliver J, Catt M, et al. (2015) A novel, open access method to assess sleep duration using a
+wrist-worn accelerometer. \emph{PLoS One} 10(11): e0142533.
 \bibitem[Wang et al.(2023)]{wang2023} Wang X, Xu Y, Li X, Mansuri A, McCall WV, Liu Y, et al.
-Day-to-day deviations in sleep parameters and biological aging: findings from the
-NHANES 2011--2014. Sleep Health. 2023;9:940--946.
-\bibitem[Yang et al.(2024)]{yang2024} Yang L, Wallen G, Barb J, Maki K, Farmer N. 0863 Sleep regularity
-and cardiovascular health among U.S. adults. Sleep. 2024;47:A370--A371.
-\bibitem[Wasserstein et al.(2019)]{wasserstein2019} Wasserstein RL, Schirm AL, Lazar NA. Moving to a world
-beyond ``$p<0.05$''. Am Stat. 2019;73(sup1):1--19.
+(2023) Day-to-day deviations in sleep parameters and biological aging: findings from the
+NHANES 2011--2014. \emph{Sleep Health} 9: 940--946.
+\bibitem[Wasserstein et al.(2019)]{wasserstein2019} Wasserstein RL, Schirm AL, Lazar NA (2019)
+Moving to a world beyond ``$p<0.05$''. \emph{Am Stat} 73(sup1): 1--19.
+\bibitem[Windred et al.(2021)]{windred2021} Windred DP, Jones SE, Russell A, Burns AC, Chan P,
+Weedon MN, et al. (2021) Objective assessment of sleep regularity in 60{,}000 UK Biobank
+participants using an open-source package. \emph{Sleep} 44(12): zsab254.
+\bibitem[Yang et al.(2024)]{yang2024} Yang L, Wallen G, Barb J, Maki K, Farmer N (2024) 0863
+Sleep regularity and cardiovascular health among U.S. adults. \emph{Sleep} 47: A370--A371.
 \end{thebibliography}
 
 \end{document}
