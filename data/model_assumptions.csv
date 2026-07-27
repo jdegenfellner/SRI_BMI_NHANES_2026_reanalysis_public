@@ -1,0 +1,4 @@
+calculator,n,adjR2,resid_skew,resid_kurt,BreuschPagan_p,SRI_nonlinearity_p,max_VIF
+Published,7085,0.137,0.31,0.59,3.4e-66,3.1e-06,2
+GGIR,7085,0.135,0.31,0.59,7.9e-66,3e-04,2
+sleepreg,4964,0.131,0.33,0.53,4.6e-46,0.073,2
