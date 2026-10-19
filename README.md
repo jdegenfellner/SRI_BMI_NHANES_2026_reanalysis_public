@@ -49,8 +49,8 @@ their run order, inputs, outputs and environment variables, in `code/revision_20
 series of the released classification are rebuilt from the public NHANES minute files with
 `code/10_build_common_series.R` (download with `code/00_download_nhanes_paxmin.R`). The analytic covariate data set of
 the earlier study, the published SRI values and the derived SRI values of every calculator and input variant are in
-`data/`; the frozen copy archived at Zenodo (DOI in the manuscript) adds the recoded minute files and all intermediate
-series, so that every table and figure can be recomputed without any download.
+`data/`; the frozen copy archived at Zenodo (https://doi.org/10.5281/zenodo.23482613) adds the recoded minute files and all
+intermediate series, so that every table and figure can be recomputed without any download.
 
 The derivation from the raw 80 Hz signal (2.45 TB of public archives) ran on two laptops and on cloud machines in a
 container; the processing scripts, the container definition and the platform comparison are in
