@@ -1,0 +1,33 @@
+sri,model,logBMI,logBMI_winsorised,diff
+SRI_no_imputation,M1,0.9228,0.9238,0.001
+SRI_no_imputation,M2,0.95,0.9509,8e-04
+SRI_no_imputation,M3_men,0.9816,0.981,-6e-04
+SRI_no_imputation,M3_women,0.9176,0.9199,0.0023
+SRI_no_imputation,Mexican American / Male,1.0354,1.0371,0.0017
+SRI_no_imputation,Mexican American / Female,0.9694,0.9743,0.0049
+SRI_no_imputation,Other Hispanic / Male,0.994,0.9935,-4e-04
+SRI_no_imputation,Other Hispanic / Female,0.9306,0.9334,0.0028
+SRI_no_imputation,Non-Hispanic White / Male,0.9677,0.9667,-0.0011
+SRI_no_imputation,Non-Hispanic White / Female,0.906,0.9081,0.0021
+SRI_no_imputation,Non-Hispanic Black / Male,1.0364,1.0351,-0.0013
+SRI_no_imputation,Non-Hispanic Black / Female,0.9703,0.9725,0.0022
+SRI_no_imputation,Non-Hispanic Asian / Male,0.9876,0.9818,-0.0058
+SRI_no_imputation,Non-Hispanic Asian / Female,0.9246,0.9224,-0.0022
+SRI_no_imputation,Other Race - Including Multi-Racial / Male,0.9271,0.935,0.0078
+SRI_no_imputation,Other Race - Including Multi-Racial / Female,0.868,0.8784,0.0104
+SRI_hand,M1,0.9263,0.9272,9e-04
+SRI_hand,M2,0.9554,0.9562,7e-04
+SRI_hand,M3_men,0.987,0.9863,-7e-04
+SRI_hand,M3_women,0.9223,0.9245,0.0022
+SRI_hand,Mexican American / Male,1.0336,1.0333,-3e-04
+SRI_hand,Mexican American / Female,0.9675,0.9703,0.0029
+SRI_hand,Other Hispanic / Male,1.0038,1.0032,-6e-04
+SRI_hand,Other Hispanic / Female,0.9395,0.9421,0.0025
+SRI_hand,Non-Hispanic White / Male,0.9745,0.9736,-9e-04
+SRI_hand,Non-Hispanic White / Female,0.9122,0.9143,0.0021
+SRI_hand,Non-Hispanic Black / Male,1.0345,1.0329,-0.0016
+SRI_hand,Non-Hispanic Black / Female,0.9683,0.97,0.0017
+SRI_hand,Non-Hispanic Asian / Male,0.9857,0.9805,-0.0052
+SRI_hand,Non-Hispanic Asian / Female,0.9226,0.9207,-0.0019
+SRI_hand,Other Race - Including Multi-Racial / Male,0.9477,0.9561,0.0084
+SRI_hand,Other Race - Including Multi-Racial / Female,0.887,0.8978,0.0108

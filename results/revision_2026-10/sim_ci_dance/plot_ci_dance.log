@@ -1,0 +1,7 @@
+M2: truth 0.9554 | point estimates 0.936-0.964 (SD 0.0090) | mean width 95% 0.036, 99% 0.046 | coverage 95%: 18/20, 99%: 20/20
+M3w: truth 0.9223 | point estimates 0.894-0.942 (SD 0.0127) | mean width 95% 0.045, 99% 0.056 | coverage 95%: 18/20, 99%: 19/20
+M2: truth 0.9554 | point estimates 0.936-0.964 (SD 0.0090) | mean width 95% 0.036, 99% 0.046 | coverage 95%: 18/20, 99%: 20/20
+M3w: truth 0.9223 | point estimates 0.894-0.942 (SD 0.0127) | mean width 95% 0.045, 99% 0.056 | coverage 95%: 18/20, 99%: 19/20
+M2: truth 0.9554 | point estimates 0.936-0.964 (SD 0.0090) | mean width 95% 0.036, 99% 0.046 | coverage 95%: 18/20, 99%: 20/20
+M3w: truth 0.9223 | point estimates 0.894-0.942 (SD 0.0127) | mean width 95% 0.045, 99% 0.056 | coverage 95%: 18/20, 99%: 19/20
+written: <working tree>/01_recompute_SRI/intermediate/revision_2026-10_results/sim_ci_dance/ci_dance.pdf 

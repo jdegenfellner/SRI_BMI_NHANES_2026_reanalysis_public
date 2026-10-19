@@ -57,15 +57,29 @@ filter_cycle <- function(pax, header_xpt, cycle_label) {
   cat("  after <30% missingness filter:", uniqueN(pax$SEQN), "SEQN  (rows:", nrow(pax), ")\n")
 
   # ---- clock-anchored UNIX timestamp ----
+  # Every retained day is a complete calendar day (exactly 1440 minutes, step 4), so its
+  # first minute is 00:00:00 local time. Anchor each day on its own first sample; no header
+  # start time is needed. Days are placed (PAXDAYM - 1) * 86400 s apart, so a dropped day
+  # leaves a real gap in the timeline (day 1 = day of monitor placement).
+  # Note (fixed 2026-10-14): the previous version derived the offset from PAXHD$PAXFTIME.
+  # That column is an empty string for ~12% of participants, and as.POSIXct() on the whole
+  # vector without an explicit format then silently falls back to a date-only format, so
+  # every start time became 00:00:00 and every series was shifted by the placement time.
+  pax[, UNIX_TIMESTAMP := (as.integer(PAXDAYM) - 1) * 86400 + (PAXSSNMP - min(PAXSSNMP)) / 80,
+      by = .(SEQN, PAXDAYM)]
+  # cross-check against the header start time where it is recorded
   hdr <- as.data.table(read_xpt(header_xpt))
   hdr[, SEQN := as.numeric(SEQN)]
-  # PAXFTIME = start clock time "HH:MM:SS"; anchor on 1970-01-01 (real time-of-day preserved)
-  hdr[, start_sec := as.numeric(difftime(
-        as.POSIXct(paste0("1970-01-01 ", PAXFTIME), tz="UTC"),
-        as.POSIXct("1970-01-01 00:00:00", tz="UTC"), units="secs"))]
-  pax <- merge(pax, hdr[, .(SEQN, start_sec)], by="SEQN", all.x=TRUE)
-  pax[, UNIX_TIMESTAMP := start_sec + PAXSSNMP/80]
-  cat("  SEQN missing start time:", uniqueN(pax[is.na(start_sec), SEQN]), "\n")
+  hdr <- hdr[nzchar(trimws(PAXFTIME))]
+  hdr[, start_sec := as.numeric(as.POSIXct(paste0("1970-01-01 ", PAXFTIME),
+                                           format = "%Y-%m-%d %H:%M:%S", tz = "UTC"))]
+  chk <- merge(pax[, .(first_samp = min(PAXSSNMP), d1 = min(as.integer(PAXDAYM))), by = SEQN],
+               hdr[, .(SEQN, start_sec)], by = "SEQN")
+  # sample 0 was taken at start_sec on day 1, so minute 0 of the first retained day d1 lies
+  # (d1 - 1) * 86400 - start_sec seconds after sample 0
+  chk[, diff_s := (d1 - 1) * 86400 - start_sec - first_samp / 80]
+  cat("  header cross-check (expect ~0 s): max |diff| =", round(max(abs(chk$diff_s)), 1),
+      "s over", nrow(chk), "SEQN with a recorded start time\n")
 
   setorder(pax, SEQN, PAXSSNMP)
   pax[, .(SEQN, PAXDAYM, PAXDAYWM = as.numeric(PAXDAYWM), binary_sleep, UNIX_TIMESTAMP, PAXPREDM)]

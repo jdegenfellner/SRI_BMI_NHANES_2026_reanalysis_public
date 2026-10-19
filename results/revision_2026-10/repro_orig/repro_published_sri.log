@@ -1,0 +1,75 @@
+                              variant     n n_published common only_published
+                               <char> <int>       <int>  <int>          <int>
+1: final filter, final pairing (wrap)  5243        4879   4879              0
+   only_reproduced exact         r
+             <int> <int>     <num>
+1:             341  1803 0.9831683
+                 variant     n n_published common only_published
+                  <char> <int>       <int>  <int>          <int>
+1: final filter, no wrap  5243        4879   4879              0
+   only_reproduced exact     r
+             <int> <int> <num>
+1:             329  4879     1
+`summarise()` has regrouped the output.
+ℹ Summaries were computed grouped by SEQN and PAXDAYM.
+ℹ Output is grouped by SEQN.
+ℹ Use `summarise(.groups = "drop_last")` to silence this message.
+ℹ Use `summarise(.by = c(SEQN, PAXDAYM))` for per-operation grouping
+  (`?dplyr::dplyr_by`) instead.
+                        variant     n n_published common only_published
+                         <char> <int>       <int>  <int>          <int>
+1: filter_2011_12_state.R, wrap  4879        4879   4879              0
+   only_reproduced exact         r
+             <int> <int>     <num>
+1:               0  1803 0.9831683
+                                         variant     n n_published common
+                                          <char> <int>       <int>  <int>
+1: filter_2011_12_state.R, no wrap  <- published  4879        4879   4879
+   only_published only_reproduced exact     r
+            <int>           <int> <int> <num>
+1:              0               0  4879     1
+                              variant     n n_published common only_published
+                               <char> <int>       <int>  <int>          <int>
+1: final filter, final pairing (wrap)  5562        5659   4796            861
+   only_reproduced exact         r
+             <int> <int>     <num>
+1:             741   509 0.9288969
+                 variant     n n_published common only_published
+                  <char> <int>       <int>  <int>          <int>
+1: final filter, no wrap  5562        5659   4780            877
+   only_reproduced exact         r
+             <int> <int>     <num>
+1:             741   515 0.9435051
+                        variant     n n_published common only_published
+                         <char> <int>       <int>  <int>          <int>
+1: filter_2013_14_state.R, wrap  5659        5659   5657              0
+   only_reproduced exact         r
+             <int> <int>     <num>
+1:               0   541 0.9848136
+                                         variant     n n_published common
+                                          <char> <int>       <int>  <int>
+1: filter_2013_14_state.R, no wrap  <- published  5659        5659   5657
+   only_published only_reproduced exact     r
+            <int>           <int> <int> <num>
+1:              0               0  5657     1
+     cycle                                       variant     n n_published
+    <char>                                        <char> <int>       <int>
+1: 2011_12            final filter, final pairing (wrap)  5243        4879
+2: 2011_12                         final filter, no wrap  5243        4879
+3: 2011_12                  filter_2011_12_state.R, wrap  4879        4879
+4: 2011_12 filter_2011_12_state.R, no wrap  <- published  4879        4879
+5: 2013_14            final filter, final pairing (wrap)  5562        5659
+6: 2013_14                         final filter, no wrap  5562        5659
+7: 2013_14                  filter_2013_14_state.R, wrap  5659        5659
+8: 2013_14 filter_2013_14_state.R, no wrap  <- published  5659        5659
+   common only_published only_reproduced exact         r
+    <int>          <int>           <int> <int>     <num>
+1:   4879              0             341  1803 0.9831683
+2:   4879              0             329  4879 1.0000000
+3:   4879              0               0  1803 0.9831683
+4:   4879              0               0  4879 1.0000000
+5:   4796            861             741   509 0.9288969
+6:   4780            877             741   515 0.9435051
+7:   5657              0               0   541 0.9848136
+8:   5657              0               0  5657 1.0000000
+DONE

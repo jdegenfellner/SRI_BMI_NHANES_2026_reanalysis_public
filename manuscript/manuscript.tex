@@ -1,644 +1,685 @@
-\documentclass[11pt]{article}
+\documentclass[12pt]{article}
 \usepackage[utf8]{inputenc}
 \usepackage[T1]{fontenc}
-\usepackage{lmodern}
+\usepackage{mathptmx}
 \usepackage[margin=1in]{geometry}
+\usepackage{setspace}
 \usepackage{amsmath,amssymb}
 \usepackage{booktabs}
 \usepackage{graphicx}
 \usepackage{siunitx}
 \usepackage[hidelinks]{hyperref}
 \usepackage{xcolor}
-\usepackage{authblk}
 \usepackage{microtype}
-\usepackage[round]{natbib}
 \usepackage{caption}
-\captionsetup[figure]{justification=centering}
-
-\title{\bfseries Does the choice of Sleep Regularity Index software change the
-conclusions? A re-analysis of the NHANES 2011--2014 sleep regularity--obesity
-association}
-
-\author[1]{J\"urgen Degenfellner}
-\affil[1]{Institute of Physiotherapy, ZHAW School of Health Sciences, Winterthur, Switzerland}
-\date{\today}
-
-% --- house rule: never dichotomise at p<0.05; report effect sizes + compatibility intervals.
+\usepackage{pdflscape}
+\usepackage[mathlines]{lineno}
+\captionsetup{justification=raggedright,singlelinecheck=false}
+\graphicspath{{./}}
 \newcommand{\CI}[2]{(95\%\ CI #1, #2)}
+\newcommand{\tbd}[1]{\textcolor{red}{[#1]}}
+\input{numbers/raw_derivation_numbers.tex}
+\input{numbers/raw_models_numbers.tex}
+\input{numbers/raw_models_numbersB.tex}
+\input{numbers/raw_timing_numbers.tex}
+\input{numbers/raw_extra_numbers.tex}
+\input{numbers/model4_numbers.tex}
+\input{numbers/raw_models_smoothed_numbers.tex}
 
+\title{\bfseries Does the choice of Sleep Regularity Index calculator or
+sleep/wake input change the conclusions? A re-analysis of the NHANES
+2011--2014 sleep regularity--obesity association}
+\author{J\"urgen Degenfellner\\[6pt]
+\normalsize Institute of Physiotherapy, ZHAW School of Health Sciences,
+Winterthur, Switzerland\\
+\normalsize Correspondence: degn@zhaw.ch\\
+\normalsize ORCID: 0000-0001-6886-4583}
+\date{}
+
+\doublespacing
 \begin{document}
+\linenumbers
+
 \maketitle
+\thispagestyle{empty}
+\clearpage
 
-\begin{abstract}
-\noindent
-\textbf{Background.} The Sleep Regularity Index (SRI) can be computed by different
-open-source packages. \citet{czeisler2025} showed that the package alone changes
-SRI values and their apparent associations with health outcomes, prompting a
-reporting standard (RIRI). I test whether a published SRI--obesity finding changes
-under the standard calculators, and why.
+\section*{Abstract}
 
-\noindent
-\textbf{Methods.} NHANES 2011--2014 provides a ready-made minute-level sleep/wake
-classification (\texttt{PAXPREDM}); feeding both packages this same series holds
-sleep detection fixed and isolates the SRI computation. On the byte-identical series
-of my published sample ($n=7085$) I recomputed the SRI with \texttt{GGIR} and
-\texttt{sleepreg} at defaults and compared them to the published SRI (computed by
-hand with the Phillips formula). I then re-estimated the published survey-weighted
-$\log$-BMI model under each calculator, reporting multiplication factors with 95\%
-bootstrap confidence intervals, and refitted it split by recording completeness.
+\textbf{Background.} Open-source packages for the Sleep Regularity Index
+(SRI) can score the same recording differently. An earlier study
+reported an inverse cross-sectional association between the SRI and body mass index (BMI) in
+NHANES 2011--2014 from the released sleep/wake classification. The same
+data were re-analysed to examine whether that association depends on the
+calculator, the structure of the released classification or the derivation
+from the raw signal.
 
-\noindent
-\textbf{Results.} On identical input the calculators disagreed: package SRIs were
-about 7 median points lower, correlated $0.81$ (\texttt{GGIR}) and $0.67$
-(\texttt{sleepreg}) with the published SRI, reshuffled about half of participants
-across quintiles, and \texttt{sleepreg}'s default 5-day minimum discarded 30\% of the
-sample. Every calculator preserved the inverse direction, but not the magnitude:
-the fully adjusted top-versus-bottom-quintile effect on BMI shrank from about
-$-5\%$ to $-1.4\%$ (\texttt{sleepreg}). The divergence was structured, driven by how
-each package pairs days across a recording gap, and confined to incompletely
-recorded participants: among the 60\% with seven consecutive days the effect was
-calculator-invariant, whereas the entire calculator dependence arose in the 40\%
-with a day gap, an instance of regression dilution from exposure measurement error.
+\noindent\textbf{Methods.} The released classification of the published sample
+($n=7085$) was rebuilt, four smoothed versions were derived,
+and the Phillips formula, \texttt{GGIR} and \texttt{sleepreg} were applied to
+each. The survey-weighted $\log$-BMI models were refitted and the calculators
+tested on synthetic recordings.
+For a random sample of \rawPrefixR{} participants the series was derived anew
+from the 80\,Hz raw signal with \texttt{GGIR} and with the public SWaN code.
 
-\noindent
-\textbf{Conclusions.} The qualitative finding is robust to the calculator, but its
-effect size and sex/ethnic effect modification are calculator-dependent: a
-measurement-error phenomenon, not a property of the association. Authors should
-report the calculator, version and minimum-day/missing-data options, and present
-effect sizes with intervals.
-\end{abstract}
+\noindent\textbf{Results.} The rebuilt series correlated $0.96$ with the
+published SRI values. The released classification changed
+between sleep and wake a median of 16 times per day. Smoothing raised the median SRI from 61 to 68--76. On the same input the calculators agreed to 0.1 points on average. As a percentage difference in BMI between the top and bottom SRI quintile, the fully adjusted multiplication factor was $-4.5\%$ for the released series and $-2.8\%$ to $-3.7\%$ after smoothing. SWaN rerun on the raw signal of the random sample changed state \rawSwanTransDay{} times per day (mean) against \rawPaxpredmTransDay{} for the release. The three series derived anew with \texttt{GGIR} and SWaN scored \rawSwanDiffMean{} to \rawGgirSptDiffMean{} points higher than the release. In this sample the same percentage difference moved from $-4.8\%$ for the released classification to between $-0.7\%$ and $+0.4\%$ for the derived series. In a
+synthetic recording with an SRI of $68.75$, deleting one day instead of
+marking it as missing made \texttt{sleepreg} return $35.18$ without warning. Its default minimum of five valid days left 48\% of participants without a
+value.
 
-\vspace{4pt}
-\noindent\textbf{Keywords:} Sleep Regularity Index; measurement error; regression
-dilution; reproducibility; secondary data analysis; NHANES; software implementation
+\noindent\textbf{Conclusions.} The SRI level depended on the input and only
+marginally on the calculator. The released classification is
+more fragmented than a new classification of the same signal with the same algorithm's public code. The inverse association with BMI weakened with every smoothed and newly derived input. Reports should describe the
+derivation and smoothing of the series, the treatment of gaps, the minimum-day rule and the remaining sample. The code should be archived.
 
-\section{Introduction}
+\vspace{0.6em}
+\noindent\textbf{Keywords:} sleep regularity index; NHANES; accelerometry; wearable monitors; \texttt{GGIR};
+\texttt{sleepreg}; measurement error; reproducibility; missing data
 
-Sleep regularity, operationalised by the Sleep Regularity Index (SRI)
-\citep{phillips2017}, is the percentage-scaled probability that a person is in
-the same state (asleep/awake) at two time points exactly 24\,h apart, ranging
-from $-100$ (perfectly inverted) through $0$ (random) to $100$ (identical days).
+\clearpage
 
-\citet{czeisler2025} compared the two widely used open-source SRI
-calculators, \texttt{sleepreg} \citep{windred2021} and \texttt{GGIR}
-\citep{migueles2019,vanhees2015}, in 73{,}794 adults. They found that SRI scores differed
-markedly between packages, in both absolute and relative terms. Applied to prospective
-models of mortality, incident type~2 diabetes, and incident atrial fibrillation, the
-calculation method alone changed results and interpretation. They proposed a 14-item reporting standard (Reporting Items
-for Regularity Indices, RIRI).
+\section{Background}
 
-In earlier work \citep{degenfellner2026} my colleagues and I reported an inverse
-cross-sectional association between the SRI and obesity in two nationally
-representative NHANES cycles (2011--2014, $n=7085$): more regular sleep was
-associated with lower BMI, more so in women and most clearly in non-Hispanic White
-and other/multi-racial women. That study used \emph{neither} package; the SRI was computed by hand,
-applying the original \citet{phillips2017} formula to NHANES's own minute-level
-wake/sleep classification (the variable \texttt{PAXPREDM}). This raises a direct,
-answerable question prompted by RIRI: \textbf{would those conclusions change if the
-SRI had been computed with the standard packages instead of by hand?}
+The Sleep Regularity Index [1] (SRI) measures the
+day-to-day similarity of a person's sleep/wake pattern. For every pair of
+epochs exactly 24\,h apart it records whether the state is the same. The index is $-100$ plus $200$ times the proportion of agreeing pairs. Identical
+days score $100$ and a random pattern approximately $0$ [2].
 
-This is not merely a theoretical concern; it is already visible \emph{within this cohort}. Reported
-SRIs for the NHANES 2011--2014 accelerometry span a wide range: a median of $84.5$
-\citep[][Suppl.\ Table~8]{wang2023}, a mean of $63.0$ \citep{yang2024} and a median of $63.9$
-(unweighted $61.5$) in the published sample \citep{degenfellner2026}, roughly $20$
-SRI points apart. These analyses differ in their analytic samples and processing
-pipelines, not only in how the SRI is computed, so this particular spread reflects
-more than the calculator. The point is simply that no single agreed SRI exists even
-for one dataset. The present study removes those confounds, fixing the participants
-and the sleep/wake series (below), to isolate the calculator alone: the specific
-divergence RIRI quantifies. For reference, \citet{windred2021} reported a median
-of $81$ in the UK Biobank, a different cohort and device.
+Czeisler et al. [20] compared the two most widely used open-source
+calculators, \texttt{sleepreg} [3] and \texttt{GGIR}
+[4, 5], in 73{,}794 adults of the UK
+Biobank. The packages gave markedly different scores and, through the calculator
+alone, different prospective associations with mortality, type~2 diabetes and atrial fibrillation. The authors proposed the Reporting Items for Regularity
+Indices (RIRI).
 
-This setting takes \citet{czeisler2025}'s comparison one step further. In their
-study the base sleep/wake classification was already held fixed: both packages
-received the \emph{same} epoch-by-epoch sleep/wake states produced by \texttt{GGIR},
-yet the SRIs still diverged, which \citet{czeisler2025} attributed to the packages'
-different algorithms and to \texttt{sleepreg}'s additional re-handling of those
-shared states (its own nap and wake-after-sleep-onset rules, based on sustained
-inactivity). That leaves one further source of divergence still in play: the
-sleep/wake series itself, which the two packages did not treat identically. NHANES
-2011--2014 closes it. It distributes a ready-made minute-level sleep/wake
-classification (\texttt{PAXPREDM}); I give this one series to all three calculators
-and run \texttt{sleepreg}'s SRI engine directly on it, so its nap and
-wake-after-sleep-onset reclassification, which needs the raw accelerometry, never
-runs. The sleep/wake series is then identical for every calculator, and any
-remaining divergence must come from the \textbf{SRI computation itself}: epoch
-resolution, day-pairing logic, missing-data handling, and minimum-day thresholds. Whether these implementation
-differences alone move a published association is what I test here, making NHANES an
-informative special case that complements RIRI.
+An earlier study [6] reported an inverse
+cross-sectional association between the SRI and body mass index (BMI) in the National Health and Nutrition Examination Survey (NHANES) 2011--2014 ($n=7085$), more clearly in women. It computed the SRI with its own
+implementation of the Phillips formula from the minute-level sleep/wake
+classification that NHANES distributes with its accelerometer data (the
+variable \texttt{PAXPREDM}). Its results therefore rest on one calculator and one input.
+
+Reported SRI values for the same NHANES accelerometry include a median of $78.1$ [7], a mean of $63.0$ [8] and the median of $63.9$ (unweighted $61.5$) of the earlier study. Cohorts whose epoch series come from a
+sleep-period detection step report medians of $81$ [3] and
+$74.7$ [9], whereas the NHANES classification is
+released minute by minute without such a step [10]. An SRI pipeline has two steps that
+can move the score, the derivation of the epoch-level series from the raw
+signal and the computation of the index from that series. Czeisler et al. [20] held the first step fixed. A released classification allows the
+complementary design, in which the same series is smoothed in defined ways and
+every version is passed to every calculator. NHANES has also
+released the raw 80\,Hz signal [11],
+so that the first step can be repeated, with the sleep detection of
+\texttt{GGIR} [5, 12] and with the public code of SWaN (sleep-wear, wake-wear and nonwear classifier), the algorithm that its developers report to have generated the released
+classification [10].
+
+The re-analysis therefore asked whether the published values can be rebuilt from the public files, whether the structure of the released classification
+sets the level of the SRI, whether the calculators differ once they receive
+the same series, whether the published SRI--BMI association keeps its
+direction and size under smoothed and under newly derived series, and how a
+recording gap passed to a package changes its result.
 
 \section{Methods}
 
-\subsection{Identical sleep/wake input}
-I reconstructed the minute-level binary sleep/wake series of the earlier study.
-From the NHANES 2011--2012 and 2013--2014 Physical Activity Monitor minute files
-(PAXMIN), \texttt{PAXPREDM} was recoded to binary sleep (sleep$=1$, wake$=0$,
-non-wear/unknown$=$missing). I applied the same inclusion filters: full-minute
-observations, no quality flags, $\geq 3$ days with $<120$\,min non-wear, days with
-exactly 1440 minutes, $\geq 3$ consecutive days including a weekend day, and
-$<30\%$ missing binary sleep per participant. NHANES does not store the
-clock time of each minute directly; it stores the monitor's start time and a
-running count of 80\,Hz samples. I used these to give every minute its real time of
-day (start time plus the sample number divided by 80). This matters because the
-SRI, and both packages, compare each day with the next at the same time of day,
-which only works with correct timestamps. The result is one shared minute-level
-sleep/wake series for all 7085 participants of the published sample, so \texttt{GGIR}
-and \texttt{sleepreg} run on identical input and any difference between them, or from
-the published SRI, reflects only the calculator.
+\subsection{Rebuilding the sleep/wake series}
+\label{sec:rebuild}
+The minute-level sleep/wake series of the earlier study was rebuilt from the
+NHANES 2011--2014 minute files. \texttt{PAXPREDM} was recoded to sleep, wake or missing (non-wear and unknown). The published inclusion filters were then applied: full-minute observations, no quality flags, at least 3 days with less
+than 120\,min of non-wear, days of exactly 1440 minutes, at least 3
+consecutive days including a weekend day, and less than 30\% missing minutes
+per participant. The series of each participant was then laid out as one
+continuous timeline with one value per minute from monitor placement to the
+end of the last retained day, every day starting at 00:00. Minutes and days
+that the filters had removed stayed in this timeline as missing values and
+were not deleted. Neither package checks whether successive days of a series are consecutive in time. When a day is deleted, \texttt{GGIR} pairs the date before the gap with the next date present, \texttt{sleepreg} carries the last state over the gap, and neither gives a warning (Section~\ref{sec:gapresults}). A day marked as missing is left out of the comparison. The Phillips formula on this shared timeline of the 7085 participants (it returns
+a value for 7076 of them) was the same-input baseline. Its relation to the published values is described in Supplementary Section~3.
 
-\subsection{The published SRI and the two package calculators}
-The baseline is the \textbf{published} SRI \citep{degenfellner2026}, computed by
-hand with the Phillips formula at 1-min epochs over weekday-matched consecutive
-days ($\mathrm{SRI} = -100 + \frac{200}{N_v}\sum 1[s_i = s_{i+1440}]$ over valid
-epoch pairs). On the reconstructed series I recomputed the SRI with the two
-standard packages, each at its default settings, and compared them to these
-published values.
-\begin{enumerate}
-\item \textbf{\texttt{sleepreg}} (\texttt{SRI\_from\_binary}, v1.3.5). The series
-is converted to the package's transition format and re-expressed at
-\emph{10-second} epochs (\texttt{sleepreg}'s fixed internal resolution); the SRI is
-then computed over the \emph{continuous} recording at a fixed 24\,h lag (not
-weekday-matched); days with $>6$\,h missing are dropped; participants with $<5$
-valid comparison days return missing (default \texttt{minSRIdays}$=5$).
-\item \textbf{\texttt{GGIR}} (\texttt{CalcSleepRegularityIndex}, v3.3.6).
-\texttt{GGIR} computes a Phillips SRI for each pair of consecutive \emph{calendar}
-days, matched by time of day at 1-min epochs and using the valid (non-missing)
-epochs in each pair, then averages these day-pair values into one SRI per person.
-\end{enumerate}
-\texttt{sleepreg}'s published pipeline targets \texttt{GGIR}~2.0-0 and is
-incompatible with current \texttt{GGIR} (3.3.6), itself an instance of the
-reproducibility problem RIRI flags. I therefore ran \texttt{sleepreg}'s SRI engine
-directly from its (\texttt{GGIR}-independent) source functions on the binary series.
+\subsection{SRI calculators}
+\label{sec:calculators}
+The archived implementation of the earlier study computes the Phillips formula, $\mathrm{SRI} = -100 + \frac{200}{N_v}\sum 1[s_i = s_{i+1440}]$, at 1-min epochs over the $N_v$ valid epoch pairs of consecutive days paired by weekday. The SRI was recomputed on the rebuilt series with
+\texttt{sleepreg} 1.3.5 and \texttt{GGIR} 3.3-6 at their default settings.
+\texttt{GGIR} distinguishes SRI1, computed from the epoch-level sleep
+classification, from SRI2, computed from its own detected sleep period. The function \texttt{CalcSleepRegularityIndex}, the engine of SRI1, was called
+with its smoothing options unset. It returns a Phillips SRI for each pair of consecutive calendar days. The day-pair values were averaged where at least 66\% of the epoch pairs were valid, which approximates the package's own criterion of more than 16 of 24 hours valid (\texttt{includenightcrit}). \texttt{sleepreg} re-expresses the series at 10-second epochs,
+drops noon-to-noon days with more than 6\,h missing and returns no value below
+five valid comparison days (\texttt{minSRIdays}, also run at three). \texttt{pyActigraphy} [13] served as a fourth
+implementation on the synthetic recordings and on the 300 NHANES recordings with the fewest missing minutes (non-wear or unknown, Supplementary Table~S2 and Section~2).
 
-\subsection{Agreement and association}
-Agreement between methods was summarised by Pearson and Spearman correlation,
-Bland--Altman limits of agreement, and cross-tabulation of SRI-quintile membership.
-For each SRI version I re-ran the published models on the same 7085-participant
-frame (survey design with 4-year MEC weights, strata and PSUs): the fully adjusted
-continuous model (log BMI on SRI plus 13 covariates), the quintile model (top vs
-bottom quintile), and the sex- and ethnicity-interaction models. I report effect
-sizes as multiplication factors $\mathrm{MF}=\exp(\beta_{\mathrm{SRI}}\,\Delta)$,
-where $\Delta$ is the fixed difference in median SRI between the top and bottom
-quintile, with 95\% bootstrap confidence intervals (500 resamples of participants,
-refitting the survey-weighted model each time), matching the original study's
-procedure so that the ``Original'' row is directly comparable.\footnote{As a
-robustness check, the design-based Taylor-linearisation intervals returned by
-\texttt{survey::svyglm} (which account for the strata and PSUs analytically rather
-than by resampling) were near-identical: for the published SRI under Model~2,
-$0.932$ to $0.969$ design-based versus $0.931$ to $0.969$ bootstrap.} To compare
-calculators directly rather than by their
-separate intervals, I also bootstrapped the \emph{difference} in multiplication
-factor between two calculators, resampling the same participants for both in each of
-500 replicates (a paired bootstrap) and taking the 95\% interval of the difference.
+\subsection{Epoch-level structure of the released classification and smoothed input variants}
+\label{sec:inputs}
+The released classification was described at the epoch level by the
+transitions between sleep and wake per day, the length of sleep bouts, the
+longest bout per day and the share of sleep minutes by clock hour. To separate
+the input from the calculator, four smoothed versions of the same series were
+derived and every calculator was run on each. The first is a centred rolling majority over 61 minutes (30 minutes on either side), computed over the observed minutes of the window. The second is the optional smoothing rule of \texttt{GGIR}'s SRI1 with the example values of its documentation, the same window with sleep assigned if at least 80\% of it is sleep. The third bridges awakenings shorter than 30 minutes, after the WASO rule of \texttt{GGIR}'s SRI2 (\texttt{SRI2\_WASOmin}, 30 minutes), and in addition removes isolated sleep bouts shorter than 30 minutes. The
+fourth keeps only the main sleep period, the longest sleep bout of each
+noon-to-noon day of the bridged series. The exact rules are given in
+Supplementary Table~S2.
+
+\subsection{Derivation of the sleep/wake series from the raw signal}
+\label{sec:rawmethods}
+NHANES 2011--2014 also distributes the raw 80\,Hz triaxial acceleration of an
+ActiGraph GT3X+ worn on the non-dominant wrist for up to nine days [11]. The monitors ran in idle sleep mode
+(ISM), which outputs a constant value during periods without movement
+(Supplementary Section~6).
+The participants of the published sample were placed in a random order with a
+fixed seed and processed in that order. The analyses use the first
+\rawPrefixR{} participants, a simple random sample of the published sample, of whom \rawNsample{} have all four series. For \rawNexcl{} participants SWaN
+returned no result in two attempts of one hour each, and
+these participants were excluded. The derivation took
+\rawComputeHours{} hours of processing time over \rawComputeDays{} days on two
+laptops and virtual machines of three cloud providers, with equality of the
+derived series between platforms verified minute by minute (Supplementary Section~7, Table~S5).
+
+The signal was processed with \texttt{GGIR} 3.3-6 at its defaults
+[5, 12, 14] (autocalibration, 5-second epochs, non-wear detection, sleep period of each
+day without a diary, sustained inactivity bouts). Two minute-level series were formed: in \texttt{GGIR} SIB (sustained
+inactivity bouts) a minute is sleep when it lies in the detected sleep period
+and in a sustained inactivity bout, in \texttt{GGIR} SPT (sleep period time)
+every minute of the sleep period is sleep. The third series came from the
+public implementation of SWaN [10] (\texttt{swan\_accel} 1.18), a classifier of
+30-second windows developed on NHANES recordings. Its published description
+matches the NHANES documentation of the released classification [15] (Supplementary Section~6). The rerun used the signal as recorded, without the replacement of the ISM stretches by the preceding 10 seconds of signal that the release documentation describes [16].
+
+Each derived series was placed on the minute index of the released data. In
+the main analysis a minute entered the SRI only if it was sleep or wake both
+in the rebuilt and in the derived series, so that all series refer to the same participants, days and minutes. A sensitivity analysis kept each series' own
+missing minutes (Supplementary Section~7). The SRI of each series was computed
+with the Phillips formula. Agreement with \texttt{PAXPREDM} was summarised as
+the share of minutes with the same label among the minutes that \texttt{PAXPREDM} labels wake or sleep and as Cohen's kappa, overall and for minutes recorded at least half in ISM. All summaries were also computed after
+the first 500 participants of the random order (Supplementary Table~S6).
+
+\subsection{Synthetic recordings and recording gaps}
+\label{sec:gaps}
+The calculators were also run on five deterministic synthetic recordings with known SRI, a seeded random pattern and a realistic seven-day recording (Supplementary Section~4). The deterministic recordings and the random pattern were presented complete and with one middle day retained as missing minutes. The realistic recording was presented complete, with the middle day retained as missing minutes and with that day deleted from the series.
+
+\subsection{Statistical analysis}
+Agreement between calculators was summarised by correlations, mean paired
+differences and cross-tabulation of SRI quintiles. For each SRI version the
+survey-weighted models of the earlier study were refitted on the same
+7085-participant frame: the age- and sex-adjusted model, the fully adjusted
+model (log BMI on SRI plus 13 covariates), the model with a sex $\times$ SRI
+interaction and the model with sex $\times$ SRI and race/ethnicity $\times$
+SRI interactions (Models 1 to 4 of the earlier study). As in the earlier study, SRI values below $-6.8$, the lower 0.5\% point of the SRI of a random sleep/wake pattern, were replaced by draws from that pattern's distribution (8 participants on the released series, one draw per participant where the earlier study used one common draw). The outcome is $\log$ BMI without the winsorisation at the 1st and 99th percentiles that the earlier study applied in its Models 2 to 4. With that winsorisation the factors change by at most $0.003$ in Models 1 to 3 and $0.011$ in Model 4 (\texttt{check\_bmi\_winsorisation.R}). From Model 4, the
+factor of each race/ethnicity and sex group and the predicted BMI over the
+SRI range at fixed covariate values were computed as in the earlier study.
+Effect sizes are multiplication factors
+$\mathrm{MF}=\exp(\beta_{\mathrm{SRI}}\,\Delta)$, where $\Delta$ is the difference between the median SRI of the top quintile and the median SRI of the bottom quintile, as in the earlier study, with 95\% bootstrap confidence intervals (CI, 200 resamples of participants). In each resample, participants were drawn with replacement and the survey design was rebuilt from their weights, strata and primary sampling units before the weighted model was refitted, as in the earlier study. The earlier study used 500 resamples for Models 1 and 2 and 100 for Models 3 and 4 and reported bootstrap means as point estimates. The re-analysis reports the estimate from the full sample with 200 resamples, which reproduces the published factors to within $0.003$ in Models 1 to 3 (Supplementary Table~S4) and $0.014$ in Model 4 (Section~\ref{sec:rawassoc}). The resampling itself is not stratified by the design. Design-based intervals, obtained from the strata and primary sampling units by Taylor linearisation of the weighted estimator, are given for comparison in Supplementary Section~5. The derived series were fitted on the participants of the random
+sample, with the released classification as reference on the same participants. The ratio of the two factors (derived series to released classification) measures the attenuation of the association. It was formed in each bootstrap resample, so that its interval reflects the pairing of the two estimates on the same participants. Model diagnostics are given in Supplementary Section~5.
+
+A simulation showed the sampling variation of the bootstrap intervals of the multiplication factor [17]. The fitted fully adjusted model on the released series, and separately
+the fitted sex-interaction model, served as data-generating processes: in each
+of 20 simulated samples the log BMI of every participant was replaced by its
+fitted value plus a residual drawn with replacement from the empirical
+residuals, with SRI, covariates, weights and survey design kept as observed.
+Each sample was analysed with the full estimation procedure, including the 200-resample bootstrap. Its 95\% and 99\% intervals were recorded against the factor that generated the data.
+
+A large language model (Claude, Anthropic) assisted with writing the analysis code and the text. The author specified the analyses and checked all code, results, statements and references against the primary sources.
 
 \section{Results}
 
-\subsection{SRI values disagree across packages on identical input}
-Median SRI was $61.5$ (published), $54.6$ (\texttt{GGIR}) and $54.6$
-(\texttt{sleepreg}), so both packages sat about 7 points lower. Against the
-published SRI, \texttt{GGIR} correlated $0.81$ and \texttt{sleepreg} $0.67$
-(Spearman $0.79$ and $0.69$; Figure~\ref{fig:scatter}). Only $49.3\%$ of
-participants fell in the same SRI quintile under \texttt{GGIR} as in the published
-values, and $44.1\%$ under \texttt{sleepreg} (12\% moved by $\geq 2$ quintiles), so
-roughly half changed quintile depending on the calculator. \texttt{sleepreg}'s
-default 5-day minimum returned missing for 2121 of 7085 participants (30\%),
-whereas \texttt{GGIR} retained all (Table~\ref{tab:agree}).
+\subsection{Reproduction of the published SRI}
+\label{sec:recon}
+The Phillips formula on the rebuilt series correlated $0.96$ with the published values (Supplementary Figure~S1). The medians were $61.3$ (rebuilt) and $61.5$ (published). The fully adjusted top-versus-bottom quintile factor on BMI was $0.955$ against the published $0.950$ (Supplementary Table~S4). The published values themselves were
+reproduced exactly only with two earlier states of the archived code of the
+earlier study, which omit the Saturday-to-Sunday day pair and, in 2013--2014,
+keep partial days (Supplementary Section~3). The code that reproduces them is in the companion repository.
+
+\subsection{Epoch-level structure of the released classification}
+\label{sec:frag}
+Over the 66.2 million retained minutes, the classification switched between
+sleep and wake a median of 16 times per participant-day (interquartile range
+12 to 22). The median sleep bout lasted 12 minutes and the longest bout of a day a median of 83 minutes. Of all sleep minutes, 80\% lay outside the longest bout of the day (Table~\ref{tab:frag}). Sleep was still concentrated at night,
+with 83 to 85\% of the minutes between 02:00 and 05:00 classified as sleep
+(Supplementary Figure~S2). Figure~\ref{fig:rasters} shows seven days of
+three participants as released and after two of the smoothing rules.
 
 \begin{table}[t]
 \centering
-\caption{Agreement of the package SRIs with the published SRI, on the same NHANES
-minute-level sleep/wake classification (\texttt{PAXPREDM}, $n=7085$).}
-\label{tab:agree}
-\begin{tabular}{lcccc}
+\caption{Epoch-level structure of the released NHANES sleep/wake classification
+(\texttt{PAXPREDM}) in the analytic sample ($n=7085$, 66.2 million minutes).}
+\label{tab:frag}
+\begin{tabular}{lr}
 \toprule
- & Median SRI & Pearson $r$ & Same quintile & $n$ with SRI \\
- & & vs.\ published & as published & (of 7085) \\
-\midrule
-Original (published) & 61.5 & 1.00 & --- & 7085 \\
-\texttt{GGIR}        & 54.6 & 0.81 & 49.3\% & 7085 \\
-\texttt{sleepreg}    & 54.6 & 0.67 & 44.1\% & 4964 \\
+Sleep--wake transitions per participant-day, median (IQR) & 16 (12--22) \\
+Uninterrupted sleep bout length, median (IQR), min & 12 (4--27) \\
+Sleep bouts of 15 minutes or less & 59\% \\
+Longest sleep bout per day, median (IQR), min & 83 (65--108) \\
+Sleep minutes outside the day's longest bout & 80\% \\
+Sleep bouts per day, median & 22 \\
+Transitions between 23:00 and 06:00 per night, median (IQR) & 8 (5--11) \\
+Wake minutes between 23:00 and 06:00 in bouts of 30 minutes or more & 74\% \\
+Sleep minutes between 10:00 and 20:00 & 12\% \\
 \bottomrule
 \end{tabular}
+\par\smallskip\raggedright\footnotesize A bout is a run of consecutive minutes with the same label. Non-wear and unknown minutes end a bout, so that a day
+has more sleep bouts than half its number of sleep--wake transitions.
 \end{table}
 
-\begin{figure}[t]
+\begin{figure}[p]
 \centering
-\includegraphics[width=0.92\textwidth]{figures/ggpairs_SRI_3way.pdf}
-\caption{Pairwise agreement of the published SRI and the two packages on the same
-NHANES minute-level sleep/wake classification (\texttt{PAXPREDM}). Diagonal: density of each calculator's SRI.
-Lower triangle: all-versus-all point clouds (red dashed line is identity). Upper
-triangle: Pearson correlation with 95\% confidence interval and the pairwise sample
-size. Note the secondary point cloud in the published-versus-package panels: a
-subgroup for whom the packages return a much lower SRI than the published values.}
-\label{fig:scatter}
+\includegraphics[width=\textwidth]{figures/fig_examples_raw_vs_bridged.pdf}
+\caption{Three participants of the 2013--2014 cycle with seven complete recording days, at the 25th, 50th and 75th percentile of the published SRI, shown as released (left), with awakenings shorter than 30 minutes bridged and isolated sleep bouts shorter than 30 minutes removed (middle), and after the 1-h (61-minute) rolling majority filter (right). Navy, sleep; cream, wake; grey, non-wear or unknown.}
+\label{fig:rasters}
 \end{figure}
 
-\subsection{The SRI--BMI effect size attenuates across calculators}
-Re-running the published Table~3 method, the ``Original'' row reproduces the
-published values (Table~\ref{tab:assoc}, Figure~\ref{fig:forest}), so every other
-row is directly comparable. The inverse direction was preserved under every calculator: every Model~1,
-Model~2 and women's Model~3 factor stayed at or below $1$ (in men the association
-was already near the null), but the magnitude was not. The fully adjusted (Model~2)
-top-vs-bottom-quintile factor moved from $0.950$ \CI{0.931}{0.969} (original) to
-$0.970$ \CI{0.953}{0.988} (\texttt{GGIR}) to $0.986$ \CI{0.967}{1.006}
-(\texttt{sleepreg}): an effect on BMI of about $-5.0\%$ (original) attenuating to
-$-1.4\%$ (\texttt{sleepreg}), with the \texttt{sleepreg} bootstrap interval
-spanning roughly $-3.3\%$ to $+0.6\%$. The fully adjusted estimate \emph{in women}
-(Model~3) moved likewise, from $0.918$ \CI{0.893}{0.945} (original) to $0.941$
-\CI{0.919}{0.966} (\texttt{GGIR}) to $0.966$ \CI{0.937}{0.994} (\texttt{sleepreg}). Comparing
-calculators directly (paired bootstrap of the difference), the fully adjusted
-top-vs-bottom-quintile effect was weaker under \texttt{GGIR} than under the
-published SRI by $0.020$ \CI{0.008}{0.031} and under \texttt{sleepreg} by $0.045$
-\CI{0.027}{0.061}; in women the corresponding differences were $0.024$
-\CI{0.008}{0.040} and $0.061$ \CI{0.040}{0.084} (Figure~\ref{fig:forest}B).
+\subsection{Calculators on the same input and smoothed input variants}
+\label{sec:inputresults}
+Given the same timeline, \texttt{GGIR} and the Phillips formula differed by $0.08$ points on average (SD of the difference $2.0$, $r=0.993$) and placed 95\% of participants in the same SRI quintile. \texttt{sleepreg} differed from the formula by $0.02$ to $0.03$ points (SD $0.3$ and $1.7$, $r \geq 0.995$). The agreement held for participants with and without seven consecutive recorded days and for every smoothed input
+(Table~\ref{tab:grid}, Supplementary Figure~S4). The packages differed in the number of participants they scored: \texttt{sleepreg} returned no value for 48\% of the 7085
+participants at its default and for 25\% at three days, because each excluded
+calendar day removes two of its noon-to-noon days, whereas \texttt{GGIR} returned a value for all but 12 to 14 participants, depending on the input. Every smoothing variant raised
+the SRI. The median of $61.3$ on the released series rose to between $67.6$
+and $69.7$ under the rolling majority, the 80\% rule and the bridging rule
+and to $75.5$ with the main sleep period alone, while the mean number of
+transitions fell from $17.7$ per day to between $2.1$ and $4.5$
+(Table~\ref{tab:grid}, Supplementary Figure~S3 and Section~5).
 
 \begin{table}[t]
 \centering
-\caption{SRI--BMI multiplication factor (top vs bottom SRI quintile, Q1$\to$Q5)
-under each SRI calculator, computed with the \emph{identical method and models as
-the original Table~3} (survey-weighted predictions at quintile-median SRI; 95\%
-bootstrap CIs). Model~1: age + sex; Model~2: fully adjusted; Model~3: fully
-adjusted with sex$\times$SRI interaction (sex-specific). The ``Original'' row
-reproduces the published values (shown in the \emph{published} row beneath it), so
-every other row is directly comparable to the published paper. Only the SRI
-computation differs across rows.}
-\label{tab:assoc}
+\caption{Median SRI by input variant and calculator (7085 participants, of whom the Phillips formula scores 7076, \texttt{GGIR} 7071 to 7073 and \texttt{sleepreg} the numbers in parentheses at its default minimum of five comparison days and at three), with the Pearson correlation of each
+package with the Phillips formula on the same input (for \texttt{sleepreg} at
+three days).}
+\label{tab:grid}
 \setlength{\tabcolsep}{4pt}
-\resizebox{\textwidth}{!}{%
-\begin{tabular}{llcccc}
+\resizebox{\textwidth}{!}{
+\begin{tabular}{lcccccc}
 \toprule
-SRI calculator & $n$ & Model 1 (age+sex) & Model 2 (full adj.) & Model 3 (women) & Model 3 (men) \\
+Input & Phillips formula & \texttt{GGIR} & $r$ & \texttt{sleepreg}, 5 days ($n$) & \texttt{sleepreg}, 3 days ($n$) & $r$ \\
 \midrule
-Original & 7085 & 0.923 (0.907,\,0.939) & 0.950 (0.931,\,0.969) & 0.918 (0.893,\,0.945) & 0.982 (0.957,\,1.002) \\
-\textit{\,published} & & \textit{0.923 (0.906,\,0.939)} & \textit{0.950 (0.932,\,0.970)} & \textit{0.920 (0.898,\,0.945)} & \textit{0.981 (0.961,\,1.002)} \\
-\texttt{GGIR} & 7085 & 0.942 (0.927,\,0.959) & 0.970 (0.953,\,0.988) & 0.941 (0.919,\,0.966) & 1.000 (0.978,\,1.023) \\
-\texttt{sleepreg} (min 5\,d) & 4964 & 0.959 (0.938,\,0.978) & 0.986 (0.967,\,1.006) & 0.966 (0.937,\,0.994) & 1.009 (0.985,\,1.038) \\
-\texttt{sleepreg} (min 3\,d) & 6796 & 0.958 (0.940,\,0.976) & 0.981 (0.963,\,0.999) & 0.961 (0.933,\,0.987) & 1.002 (0.983,\,1.024) \\
+Released classification, unsmoothed & 61.3 & 61.4 & 0.993 & 61.0 (3673) & 61.0 (5342) & 0.995 \\
+Rolling majority, 1 h & 69.1 & 69.4 & 0.992 & 69.1 (3673) & 69.0 (5342) & 0.994 \\
+\texttt{GGIR} SRI1 smoothing, 1 h, 80\% & 69.7 & 69.8 & 0.988 & 69.8 (3673) & 69.5 (5342) & 0.992 \\
+Awakenings $<$30 min bridged & 67.6 & 67.8 & 0.994 & 67.0 (3854) & 67.3 (5423) & 0.995 \\
+Main sleep period only & 75.5 & 75.7 & 0.990 & 75.8 (3854) & 75.8 (5423) & 0.991 \\
 \bottomrule
-\end{tabular}%
+\end{tabular}
+}
+\end{table}
+
+\subsection{Recording gaps}
+\label{sec:gapresults}
+On the synthetic recordings the four implementations returned the known SRI of the five deterministic patterns to within $0.4$ points and placed the random pattern less than one point from zero. On the 300 NHANES recordings with seven consecutive days and the fewest missing minutes they agreed to $0.02$ points (Supplementary
+Section~4, Table~S3). With one middle
+day retained as missing minutes, the formula and \texttt{GGIR} agreed
+($68.75$) and \texttt{sleepreg} returned no value at its default minimum of
+comparison days. With the day deleted from the series, the same recording gave
+$71.94$ from \texttt{GGIR}, which compared two days 48\,h apart, and
+$35.18$ from \texttt{sleepreg}, which stores a series as the times of its
+sleep/wake changes and so carries the last state over the deleted day, and
+neither package issued a warning (Supplementary
+Section~4).
+
+\subsection{Derivation from the raw signal}
+\label{sec:rawresults}
+On the same participants, days and minutes (the \rawNsample{} participants of the random sample with all four series), each derived series scored higher than the released classification (Table~\ref{tab:rawsri}, Figure~\ref{fig:rawderiv}). The mean
+SRI was \rawPaxpredmSriMean{} for \texttt{PAXPREDM}, \rawGgirSibSriMean{} for
+\texttt{GGIR} SIB, \rawGgirSptSriMean{} for \texttt{GGIR} SPT and
+\rawSwanSriMean{} for SWaN, with mean paired differences from
+\texttt{PAXPREDM} of \rawGgirSibDiffMean{}
+\CI{\rawGgirSibDiffLo}{\rawGgirSibDiffHi}, \rawGgirSptDiffMean{}
+\CI{\rawGgirSptDiffLo}{\rawGgirSptDiffHi} and \rawSwanDiffMean{}
+\CI{\rawSwanDiffLo}{\rawSwanDiffHi} points. The released classification changed
+state a mean of \rawPaxpredmTransDay{} times per participant-day and labelled
+\rawPaxpredmSleepMinDay{} minutes per day as sleep. SWaN, run on the same signal, changed state \rawSwanTransDay{} times per day with \rawSwanSleepMinDay{} minutes of sleep. The \texttt{GGIR} sleep period changed state \rawGgirSptTransDay{} times with \rawGgirSptSleepMinDay{} minutes.
+\texttt{GGIR} SIB changed state slightly more often than the released
+classification (\rawGgirSibTransDay{} times per day), because sustained inactivity bouts alternate with movement inside the sleep period. Its SRI was still \rawGgirSibDiffMean{} points higher. Minute by minute, the derived series
+agreed with the released classification in \rawGgirSibAgreeAll{} to
+\rawSwanAgreeAll\% of the minutes (kappa \rawGgirSibKappaAll{} to
+\rawSwanKappaAll), in \rawGgirSibAgreeIsm{} to \rawSwanAgreeIsm\% of the
+minutes recorded at least half in ISM and in \rawGgirSptAgreeNon{} to
+\rawGgirSibAgreeNon\% of the other minutes. The summaries after the first 500 participants of the random order differed from these by less than a point (Supplementary Table~S6, Figure~S5). The sensitivity analysis with each series' own missing minutes is given in Supplementary Section~7.
+
+\begin{table}[t]
+\centering
+\caption{The released classification and the three series derived from the raw
+signal on the same participants, days and minutes (random sample,
+$n=\rawNsample$). SRI by the Phillips formula. The difference is the mean paired difference from \texttt{PAXPREDM} with its 95\% bootstrap interval. Agreement is the share of minutes with the same label among the minutes that
+\texttt{PAXPREDM} labels wake or sleep, overall and by whether at least half of
+the minute was recorded in idle sleep mode (ISM), with Cohen's kappa in
+parentheses.}
+\label{tab:rawsri}
+\setlength{\tabcolsep}{4pt}
+\resizebox{\textwidth}{!}{
+\begin{tabular}{lcccccccc}
+\toprule
+ & \multicolumn{2}{c}{SRI} & & Transitions & Sleep & \multicolumn{3}{c}{Agreement with \texttt{PAXPREDM}, \% (kappa)} \\
+\cmidrule(lr){2-3}\cmidrule(lr){7-9}
+Series & Mean (SD) & Median & Difference (95\% CI) & per day, mean & min/day, mean & All minutes & ISM & Not ISM \\
+\midrule
+\texttt{PAXPREDM} & \rawPaxpredmSriMean{} (\rawPaxpredmSriSd) & \rawPaxpredmSriMedian & --- & \rawPaxpredmTransDay & \rawPaxpredmSleepMinDay & --- & --- & --- \\
+\texttt{GGIR} SIB & \rawGgirSibSriMean{} (\rawGgirSibSriSd) & \rawGgirSibSriMedian & \rawGgirSibDiffMean{} (\rawGgirSibDiffLo, \rawGgirSibDiffHi) & \rawGgirSibTransDay & \rawGgirSibSleepMinDay & \rawGgirSibAgreeAll{} (\rawGgirSibKappaAll) & \rawGgirSibAgreeIsm{} (\rawGgirSibKappaIsm) & \rawGgirSibAgreeNon{} (\rawGgirSibKappaNon) \\
+\texttt{GGIR} SPT & \rawGgirSptSriMean{} (\rawGgirSptSriSd) & \rawGgirSptSriMedian & \rawGgirSptDiffMean{} (\rawGgirSptDiffLo, \rawGgirSptDiffHi) & \rawGgirSptTransDay & \rawGgirSptSleepMinDay & \rawGgirSptAgreeAll{} (\rawGgirSptKappaAll) & \rawGgirSptAgreeIsm{} (\rawGgirSptKappaIsm) & \rawGgirSptAgreeNon{} (\rawGgirSptKappaNon) \\
+SWaN & \rawSwanSriMean{} (\rawSwanSriSd) & \rawSwanSriMedian & \rawSwanDiffMean{} (\rawSwanDiffLo, \rawSwanDiffHi) & \rawSwanTransDay & \rawSwanSleepMinDay & \rawSwanAgreeAll{} (\rawSwanKappaAll) & \rawSwanAgreeIsm{} (\rawSwanKappaIsm) & \rawSwanAgreeNon{} (\rawSwanKappaNon) \\
+\bottomrule
+\end{tabular}
 }
 \end{table}
 
 \begin{figure}[t]
 \centering
-\includegraphics[width=\textwidth]{figures/forest_MF.pdf}\\[4pt]
-\includegraphics[width=\textwidth]{figures/forest_diff.pdf}
-\caption{\textbf{(A, top)} SRI--BMI effect size (top vs bottom SRI quintile,
-multiplication factor on BMI with 95\% bootstrap CI) by calculator, computed with
-the published Table~3 method and models; left, fully adjusted (Model~2); right,
-women (Model~3). The inverse direction is preserved, but the magnitude attenuates
-from the published SRI to \texttt{GGIR} to \texttt{sleepreg}.
-\textbf{(B, bottom)} The \emph{difference} in multiplication factor from the
-published SRI, estimated by a paired bootstrap (the same participants resampled for
-both calculators); point and 95\% interval, with the dashed line marking no
-difference. Both packages give a weaker effect than the
-published SRI, more so \texttt{sleepreg}.}
-\label{fig:forest}
+\includegraphics[width=0.7\textwidth]{figures/fig_sri_by_derivation.pdf}
+\caption{Distribution of the SRI (Phillips formula on the minutes labelled in both series) for
+the released classification and the three series derived from the raw signal
+in the random sample ($n=\rawNsample$), with medians.}
+\label{fig:rawderiv}
 \end{figure}
 
-\subsection{Effect modification weakens too}
-The sex$\times$SRI and ethnicity$\times$SRI interactions were clearest under the
-published SRI and \texttt{GGIR} and noticeably attenuated under \texttt{sleepreg},
-where the interaction estimates shrank and their intervals widened (with $30\%$
-fewer participants). The ``stronger in women'' pattern is
-thus itself calculator-dependent in strength, though not in direction. This is most
-visible when the published study's main figure, Figure~2 of
-\citet{degenfellner2026} (the fully adjusted model-4 predictions of BMI across the
-SRI range by sex and race/ethnicity), is reproduced under each calculator
-(Figure~\ref{fig:effmod}): the female slopes that carry the association, clearest
-for non-Hispanic White and other/multi-racial women, are steepest under the
-published SRI, shallower under \texttt{GGIR} and flattest under \texttt{sleepreg},
-while the near-flat male slopes are unchanged. The effect modification is real
-under every calculator but its \emph{strength} tracks the SRI's measurement quality.
+\subsection{Association with BMI}
+\label{sec:rawassoc}
+With Models 1 to 3 of the earlier study (its Table~3), the fully adjusted
+top-versus-bottom quintile factor on BMI was $0.955$ \CI{0.936}{0.976} on the
+released series and $0.963$ to $0.972$ on the smoothed series
+(Figure~\ref{fig:forestgrid}, Supplementary Table~S4). In women it was $0.922$
+to $0.946$, in men $0.987$ to $1.002$. Expressed as the percentage difference in BMI between the top and bottom SRI quintile, the fully adjusted factor was $-4.5\%$ on the released series and $-2.8\%$ to $-3.7\%$ after smoothing. The factors from \texttt{GGIR}
+differed from those of the formula by at most $0.002$, those from
+\texttt{sleepreg} were $0.009$ to $0.020$ lower because of its smaller sample
+(Supplementary Section~5).
 
-\begin{figure}[p]
-\centering
-\includegraphics[height=0.74\textheight]{figures/figure2_by_calculator.pdf}
-\caption{Figure~2 of \citet{degenfellner2026} reproduced under each SRI calculator.
-Predicted BMI across the SRI range ($0$--$100$) by sex (Female teal, Male salmon)
-and race/ethnicity, from the fully adjusted interaction model (the published
-study's model~4: $\log$-BMI on SRI in interaction with sex and with
-race/ethnicity, plus all covariates; survey-weighted), with design-based $95\%$
-bands. Rows are race/ethnicity, columns are the three calculators. The
-inverse female slopes attenuate from the published SRI (left) through \texttt{GGIR}
-to \texttt{sleepreg} (right), most clearly for non-Hispanic White and
-other/multi-racial women; the male slopes stay near flat throughout. The absolute
-BMI level reflects covariates held at reference, so only the slopes and their
-change across columns are to be compared. Bands are design-based and match a
-participant bootstrap to within about $5\%$ in width.}
-\label{fig:effmod}
-\end{figure}
-
-\subsection{The \texttt{sleepreg} attrition is a default effect, not a data limit}
-Almost all participants recorded 6--7 calendar days ($<5$ raw days for only
-$1.4\%$). The 30\% loss under \texttt{sleepreg} arises from two defaults acting
-together on NHANES's non-wear load: days with $>6$\,h missing are
-discarded, and only epoch pairs observed on \emph{both} days count, so the number
-of valid comparison days falls below the \texttt{minSRIdays}$=5$ default for
-$29.9\%$ of participants. Lowering this single default to $3$ (the original
-study's rule) recovers $n$ from $4964$ to $6796$, but barely moves the effect
-estimate: the fully adjusted top-vs-bottom-quintile factor goes from $0.986$
-\CI{0.967}{1.006} at \texttt{minSRIdays}$=5$ to $0.981$ \CI{0.963}{0.999} at
-\texttt{minSRIdays}$=3$ (Table~\ref{tab:assoc}). The default therefore explains
-the analytic sample loss but only a small fraction of the attenuation: even at
-\texttt{minSRIdays}$=3$ the \texttt{sleepreg} effect ($0.981$) remains
-appreciably weaker than the published SRI ($0.950$), and the residual gap is
-intrinsic to its 10-second, continuous-lag arithmetic.
-
-\subsection{The disagreement is structured, not random: it concentrates in
-gapped recordings}
-The calculator disagreement is not uniform scatter around the identity line. The
-published-versus-package plots show several distinct point clouds with different
-slopes (Figures~\ref{fig:scatter} and \ref{fig:clouds}), which a single Pearson
-correlation cannot capture because it averages over a mixture. Colouring the points
-by candidate features identifies the latent variable: the number of
-\emph{consecutive} recording days. Participants with seven consecutive valid days
-(about $60\%$ of the sample) lie on the identity line, where the packages and the
-published SRI agree almost exactly. Participants with a \emph{day gap}
-(non-consecutive days; about $40\%$) split off into separate clouds in which the
-package SRI is systematically lower, on average $22$ SRI points lower at six valid
-days and $32$ points lower at five. The gap between \texttt{sleepreg} and the
-published SRI correlates $r=0.70$ with the number of non-consecutive day boundaries,
-but hardly at all with missingness or survey wave. The mechanism is the day-pairing
-convention: the hand Phillips calculation of the published study pairs days by
-\emph{day of week} (and skips the gap), \texttt{GGIR} pairs consecutive calendar
-dates, and \texttt{sleepreg} uses a continuous real-time 24\,h lag, so a gap in the
-recording makes the calculators compare different day pairs. The clouds are discrete
-because the number of valid days is. Fitting a separate line per valid-days group
-makes this explicit (Figure~\ref{fig:lines}): regressing the \texttt{sleepreg} SRI
-on the published SRI gives a slope of $0.97$ ($r=0.98$) at seven consecutive days,
-$0.49$ ($r=0.54$) at six days, and $0.19$ ($r=0.14$) at five days, so the agreement
-collapses as days are lost and at five days the two are almost unrelated. The
-corresponding \texttt{GGIR} slopes are $0.94$, $0.81$, $0.60$. The calculator one
-chooses therefore matters most for the participants with the least
-complete data.
+In Model 4, the factors of the twelve race/ethnicity and sex groups on the
+published SRI differed from those of the earlier study by at most
+\mfourPubMaxDiffOrig{} (its Table~3 reports bootstrap means). The pattern
+persisted under every input: in each race/ethnicity group, women had a
+lower factor than men in \mfourWomenBelowMen{} comparisons (six groups, six
+inputs). Among the five larger race/ethnicity groups the lowest factors were those of non-Hispanic White women, \mfourNhwWomenRelEst{} \CI{\mfourNhwWomenRelLo}{\mfourNhwWomenRelHi} on the released series and \mfourNhwWomenSptEst{} \CI{\mfourNhwWomenSptLo}{\mfourNhwWomenSptHi} with the main-sleep-period input. The smallest group, other race/ethnicity including multiracial (\mfourOthWomenN{} women), had lower point estimates with wide intervals (\mfourOthWomenRelEst{} \CI{\mfourOthWomenRelLo}{\mfourOthWomenRelHi} on the released series). The highest factors were those of Mexican American and non-Hispanic Black men (\mfourMexMenRelEst{} and \mfourNhbMenRelEst{} on the released series). Smoothing moved the group factors by $\mfourShiftLo$ to $\mfourShiftHi$
+(Supplementary Section~8, Table~S8, Figures~S6 and S7). \texttt{GGIR} agreed with the formula to \mfourMaxDiffGgir{} or less in every group and input. \texttt{sleepreg} differed by up to \mfourMaxDiffSleepregFive{} in the
+smallest groups because of its smaller sample.
 
 \begin{figure}[t]
 \centering
-\includegraphics[width=\textwidth]{figures/faceted_lines_by_days.pdf}
-\caption{Package SRI versus published SRI, faceted by number of valid (consecutive)
-recording days (red dashed: identity; blue: OLS with 95\% band; orange dotted:
-LOESS). At seven consecutive days agreement is essentially perfect
-(\texttt{sleepreg} slope $0.97$, $r=0.98$). With each missing day it degrades
-(slope $0.49$ then $0.19$ for \texttt{sleepreg}; $0.81$ then $0.60$ for
-\texttt{GGIR}). The fit is poor for the gapped groups not by accident: at six days
-the \texttt{sleepreg} cloud is visibly split into sub-clusters, and at five days
-there is barely any relationship ($r=0.14$), so no single line, OLS or LOESS,
-describes it. The disagreement is a breakdown of agreement, not a uniform shift.}
-\label{fig:lines}
+\includegraphics[width=\textwidth]{figures/fig_forest_grid.pdf}
+\caption{SRI--BMI multiplication factor (top versus bottom SRI quintile) by
+input variant and calculator, with 95\% bootstrap intervals; left, fully
+adjusted model; right, women. The dotted red line marks the published value
+and the dashed line no association. \texttt{sleepreg} estimates rest on the
+participants for whom it returned a score (5 days: $n=3673$ to $3854$; 3
+days: $5342$ to $5423$). All inputs are the released classification and its smoothed versions in the published sample. The series derived anew from the raw signal are compared with these inputs on the same participants in Table~\ref{tab:rawassoc}. The estimates are listed in Supplementary Table~S4.}
+\label{fig:forestgrid}
 \end{figure}
+
+On the \rawModelN{} participants of the random sample, the released
+classification gave a fully adjusted factor of \rawPaxpredmMBEst{}
+\CI{\rawPaxpredmMBLo}{\rawPaxpredmMBHi}. The derived series gave \rawGgirSibMBEst{} \CI{\rawGgirSibMBLo}{\rawGgirSibMBHi} for \texttt{GGIR} SIB, \rawGgirSptMBEst{} \CI{\rawGgirSptMBLo}{\rawGgirSptMBHi} for
+\texttt{GGIR} SPT and \rawSwanMBEst{} \CI{\rawSwanMBLo}{\rawSwanMBHi} for SWaN (Table~\ref{tab:rawassoc}). On the same participants, the four smoothed versions of the released classification gave \rawSmoothedMBMin{} to \rawSmoothedMBMax{}, above the factor of the released classification as in the published sample. Divided by the factor of the released classification in the same bootstrap resamples, the factors of the derived series gave ratios of \rawGgirSibMBRatioEst{} \CI{\rawGgirSibMBRatioLo}{\rawGgirSibMBRatioHi}, \rawGgirSptMBRatioEst{} \CI{\rawGgirSptMBRatioLo}{\rawGgirSptMBRatioHi} and \rawSwanMBRatioEst{} \CI{\rawSwanMBRatioLo}{\rawSwanMBRatioHi}, where a ratio above $1$ means a weaker inverse association. The weaker association is not an effect of the narrower quintile contrast of the derived series: per 10 SRI points, the BMI change was $\rawPaxpredmMBPerTenEst$\% for the released classification and $\rawSwanMBPerTenEst$\% to $\rawGgirSibMBPerTenEst$\% for the derived series (Supplementary Section~7). The sex
+pattern of the earlier study appeared in every series, with point estimates
+below one in women and above one in men (Table~\ref{tab:rawassoc}). The sensitivity analysis with each series' own
+missing minutes gave factors that differed from these by at most $0.01$
+(Supplementary Table~S7).
+Model 4 on the random sample, with \mfourRawNmin{} to \mfourRawNmax{}
+participants per race/ethnicity and sex group, kept the sex pattern in every
+series (women below men in all six groups for each of the four series) with wide intervals (widths \mfourRawWidthMin{} to \mfourRawWidthMax{}, Supplementary Table~S9).
+
+Figure~\ref{fig:cidance} shows the intervals of the 20 samples simulated from
+the fitted models. With the fully adjusted factor fixed at \simTwoTruth{}, the
+point estimates ranged from \simTwoMfMin{} to \simTwoMfMax{} and no 95\% interval reached above \simTwoHiMax{}. The 95\% intervals contained the true factor in \simTwoCoverNinetyFive{} of 20 samples and the
+99\% intervals in \simTwoCoverNinetyNine{}. For women (true factor
+\simThreeWTruth), the point estimates ranged from \simThreeWMfMin{} to \simThreeWMfMax{}. The 95\% intervals contained the true factor in \simThreeWCoverNinetyFive{} of 20 samples, the 99\% intervals in
+\simThreeWCoverNinetyNine{}.
+
+\begin{landscape}
+\begin{table}[htbp]
+\centering
+\caption{SRI--BMI multiplication factor (top versus bottom SRI quintile) on the same \rawModelN{} participants (random sample) for the released classification, its four smoothed versions (the inputs of Figure~\ref{fig:forestgrid}) and the three series derived anew from the raw signal (survey-weighted Models 1 to 3 of the earlier study, its Table~3; 95\% bootstrap intervals).
+$\Delta$SRI is the median SRI difference between the top and bottom quintile of
+each series. Model~1 adjusts for age and sex, Model~2 is fully adjusted, Model~3
+adds a sex $\times$ SRI interaction. The last column is the ratio of the Model~2 factor to that of the unsmoothed released classification, formed in the same bootstrap resamples. Model~4, which gives one factor per race/ethnicity and sex group, is in Supplementary Table~S9.}
+\label{tab:rawassoc}
+\footnotesize\setlength{\tabcolsep}{2pt}
+\begin{tabular}{lcccccc}
+\toprule
+Series & $\Delta$SRI & Model 1 (age, sex) & Model 2 (fully adjusted) & Model 3, women & Model 3, men & Ratio to released (Model 2) \\
+\midrule
+\multicolumn{7}{l}{\emph{Released classification (Phillips formula) and its smoothed versions}} \\
+Released classification, unsmoothed & \rawPaxpredmMBDSri & \rawPaxpredmMAEst{} (\rawPaxpredmMALo, \rawPaxpredmMAHi) & \rawPaxpredmMBEst{} (\rawPaxpredmMBLo, \rawPaxpredmMBHi) & \rawPaxpredmMCotherEst{} (\rawPaxpredmMCotherLo, \rawPaxpredmMCotherHi) & \rawPaxpredmMCrefEst{} (\rawPaxpredmMCrefLo, \rawPaxpredmMCrefHi) & --- \\
+Rolling majority, 1 h & \rawMajMBDSri & \rawMajMAEst{} (\rawMajMALo, \rawMajMAHi) & \rawMajMBEst{} (\rawMajMBLo, \rawMajMBHi) & \rawMajMCotherEst{} (\rawMajMCotherLo, \rawMajMCotherHi) & \rawMajMCrefEst{} (\rawMajMCrefLo, \rawMajMCrefHi) & \rawMajMBRatioEst{} (\rawMajMBRatioLo, \rawMajMBRatioHi) \\
+\texttt{GGIR} SRI1 smoothing, 1 h, 80\% & \rawGgirsmMBDSri & \rawGgirsmMAEst{} (\rawGgirsmMALo, \rawGgirsmMAHi) & \rawGgirsmMBEst{} (\rawGgirsmMBLo, \rawGgirsmMBHi) & \rawGgirsmMCotherEst{} (\rawGgirsmMCotherLo, \rawGgirsmMCotherHi) & \rawGgirsmMCrefEst{} (\rawGgirsmMCrefLo, \rawGgirsmMCrefHi) & \rawGgirsmMBRatioEst{} (\rawGgirsmMBRatioLo, \rawGgirsmMBRatioHi) \\
+Awakenings $<$30 min bridged & \rawBridgeMBDSri & \rawBridgeMAEst{} (\rawBridgeMALo, \rawBridgeMAHi) & \rawBridgeMBEst{} (\rawBridgeMBLo, \rawBridgeMBHi) & \rawBridgeMCotherEst{} (\rawBridgeMCotherLo, \rawBridgeMCotherHi) & \rawBridgeMCrefEst{} (\rawBridgeMCrefLo, \rawBridgeMCrefHi) & \rawBridgeMBRatioEst{} (\rawBridgeMBRatioLo, \rawBridgeMBRatioHi) \\
+Main sleep period only & \rawSptMBDSri & \rawSptMAEst{} (\rawSptMALo, \rawSptMAHi) & \rawSptMBEst{} (\rawSptMBLo, \rawSptMBHi) & \rawSptMCotherEst{} (\rawSptMCotherLo, \rawSptMCotherHi) & \rawSptMCrefEst{} (\rawSptMCrefLo, \rawSptMCrefHi) & \rawSptMBRatioEst{} (\rawSptMBRatioLo, \rawSptMBRatioHi) \\
+\midrule
+\multicolumn{7}{l}{\emph{Series derived anew from the raw signal}} \\
+\texttt{GGIR} SIB & \rawGgirSibMBDSri & \rawGgirSibMAEst{} (\rawGgirSibMALo, \rawGgirSibMAHi) & \rawGgirSibMBEst{} (\rawGgirSibMBLo, \rawGgirSibMBHi) & \rawGgirSibMCotherEst{} (\rawGgirSibMCotherLo, \rawGgirSibMCotherHi) & \rawGgirSibMCrefEst{} (\rawGgirSibMCrefLo, \rawGgirSibMCrefHi) & \rawGgirSibMBRatioEst{} (\rawGgirSibMBRatioLo, \rawGgirSibMBRatioHi) \\
+\texttt{GGIR} SPT & \rawGgirSptMBDSri & \rawGgirSptMAEst{} (\rawGgirSptMALo, \rawGgirSptMAHi) & \rawGgirSptMBEst{} (\rawGgirSptMBLo, \rawGgirSptMBHi) & \rawGgirSptMCotherEst{} (\rawGgirSptMCotherLo, \rawGgirSptMCotherHi) & \rawGgirSptMCrefEst{} (\rawGgirSptMCrefLo, \rawGgirSptMCrefHi) & \rawGgirSptMBRatioEst{} (\rawGgirSptMBRatioLo, \rawGgirSptMBRatioHi) \\
+SWaN & \rawSwanMBDSri & \rawSwanMAEst{} (\rawSwanMALo, \rawSwanMAHi) & \rawSwanMBEst{} (\rawSwanMBLo, \rawSwanMBHi) & \rawSwanMCotherEst{} (\rawSwanMCotherLo, \rawSwanMCotherHi) & \rawSwanMCrefEst{} (\rawSwanMCrefLo, \rawSwanMCrefHi) & \rawSwanMBRatioEst{} (\rawSwanMBRatioLo, \rawSwanMBRatioHi) \\
+\bottomrule
+\end{tabular}
+\end{table}
+\end{landscape}
 
 \begin{figure}[t]
 \centering
-\includegraphics[width=\textwidth]{figures/cloud_structure_Hand_vs_sleepreg.pdf}
-\caption{The \texttt{sleepreg}-versus-published SRI scatter, coloured by candidate
-per-participant features. The off-diagonal clouds are explained by the number of
-valid (consecutive) days / the presence of a day gap (top-left, bottom-left), not
-by missingness (top-right) or NHANES wave (bottom-right). Participants with all
-seven days consecutive lie on the identity line; those with a gap form the lower
-clouds.}
-\label{fig:clouds}
-\end{figure}
-
-\subsection{The calculator dependence is confined to gapped recordings}
-\label{sec:subgroup}
-The day-pairing account makes a clear prediction: where a recording has \emph{no}
-gap the calculators return the same SRI, so the SRI--BMI effect should be
-\emph{calculator-invariant} there, and all calculator dependence should live in the
-gapped recordings. Refitting the fully adjusted model separately by recording
-completeness confirms this. Among the $60\%$ with seven consecutive valid days
-($n=4249$), the top-vs-bottom-quintile factor is essentially identical whichever
-calculator is used: $0.944$ (published), $0.951$ (\texttt{GGIR}) and $0.943$
-(\texttt{sleepreg}), a spread of just $0.008$. Among the $40\%$ with a day gap the
-same factor fans out: $0.959$ (published), $0.981$ (\texttt{GGIR}) and $0.998$
-(\texttt{sleepreg}), a spread of $0.039$, with
-\texttt{sleepreg} now at essentially no effect. Every calculator therefore
-reproduces the published association in the well-recorded majority; they diverge
-only where a missing day forces their day-pairing rules apart. A paired bootstrap
-of the difference from the published SRI confirms the same split: among the
-seven-day recordings the differences are near zero (\texttt{GGIR} $+0.007$,
-\CI{-0.003}{0.017}; \texttt{sleepreg} $+0.003$, \CI{-0.002}{0.009}), whereas among
-the gapped recordings they are larger (\texttt{GGIR} $+0.022$, \CI{0.001}{0.042};
-\texttt{sleepreg} $+0.047$, \CI{0.009}{0.092}; Figure~\ref{fig:subgroup}B).
-
-\begin{figure}[t]
-\centering
-\includegraphics[width=0.82\textwidth]{figures/forest_subgroup.pdf}\\[4pt]
-\includegraphics[width=0.82\textwidth]{figures/forest_subgroup_diff.pdf}
-\caption{The SRI--BMI effect (Model~2, top vs bottom SRI quintile) by calculator,
-split by recording completeness. \textbf{(A, top)} Multiplication factor per
-calculator with 95\% CI. Among participants with seven consecutive valid days the
-three calculators are essentially interchangeable (spread $0.008$); all calculator
-dependence appears among those with a day gap, where the package estimates flatten
-toward the null. \textbf{(B, bottom)} The difference in multiplication factor from
-the published SRI (paired bootstrap; point and 95\% interval, the dashed line
-marking no difference): near zero in the complete-recording subgroup
-(\texttt{GGIR} $+0.007$, \texttt{sleepreg} $+0.003$) and larger in the gapped
-subgroup (\texttt{GGIR} $+0.022$, \texttt{sleepreg} $+0.047$). The calculator
-dependence of the published association is thus a measurement-error effect of
-incompletely recorded participants.}
-\label{fig:subgroup}
+\includegraphics[width=\textwidth]{figures/fig_ci_dance.pdf}
+\caption{Twenty samples simulated from the fitted models on the released
+series, with the true multiplication factor known (solid line): point
+estimates with 95\% (thick) and 99\% (thin) bootstrap intervals of the
+SRI--BMI factor, top versus bottom SRI quintile; left, fully adjusted model;
+right, women. The dashed grey line marks no association. A 95\% interval drawn in red does not contain the true factor.}
+\label{fig:cidance}
 \end{figure}
 
 \section{Discussion}
 
-On the same fixed NHANES sleep/wake series (\texttt{PAXPREDM}), held identical for
-every calculator, the three SRI calculators still disagreed: $\sim$7-point median
-shifts, correlations as low as $0.67$, half of participants reshuffled across
-quintiles, and a 30\% swing in analytic sample size from a single default. This is a
-step beyond \citet{czeisler2025}, whose two packages shared \texttt{GGIR}'s base
-states but still differed in how \texttt{sleepreg} re-handled naps and
-wake-after-sleep-onset. An appreciable part of the divergence is therefore
-intrinsic to the SRI \emph{computation} (epoch resolution, day-pairing,
-missing-data rules, minimum-day thresholds), not only to sleep classification.
+The sleep/wake classification released with NHANES 2011--2014 is highly fragmented. Any SRI computed from it, by any calculator, is the SRI of a fragmented series. The unweighted median of the published values, $61.5$, should be read in this light. Smoothing raised the median to between $67.6$ and $75.5$, closer
+to the medians of $74.7$ and $81$ reported for epoch series derived with a
+sleep-period detection step [3, 9]. The series derived anew from the raw signal of a random sample scored \rawSwanDiffMean{} to \rawGgirSptDiffMean{} points above the released
+classification. The calculators themselves agreed on the same series. Under every smoothed version and every calculator the inverse SRI--BMI association kept its direction. With the Phillips formula and \texttt{GGIR} it lost a fifth to two fifths of its size. With the series derived anew from the raw signal the point estimates moved close to no association: the fully adjusted multiplication factor (Model 2 in Table~\ref{tab:rawassoc}) moved from \rawPaxpredmMBEst{} to between \rawSwanMBEst{} and \rawGgirSibMBEst{}, where $1$ means no association, with 95\% intervals that reach from a small inverse association (lower limits \rawSwanMBLo{} to \rawGgirSibMBLo{}, just above the published $0.950$) to a small positive one (upper limits \rawSwanMBHi{} to \rawGgirSibMBHi{}).
 
-\subsection{Why the calculators disagree}
-With the sleep/wake series fixed for all three calculators, the divergence I observe
-must arise in the SRI computation itself. Reading the package source identifies four
-mechanisms, which my analyses then rank.
-\begin{enumerate}\itemsep1pt
-\item \textbf{Day pairing (dominant).} The original implements the Phillips
-formula by pairing epochs with the \emph{same day-of-week index} one step apart
-(skipping non-consecutive days, wrapping Saturday$\to$Sunday); \texttt{GGIR}
-(\texttt{CalcSleepRegularityIndex}) pairs each \emph{consecutive calendar date}
-with the next, matched on time-of-day; \texttt{sleepreg}
-(\texttt{SRI\_from\_binary}) compares every epoch with the one exactly 24\,h
-earlier along the \emph{continuous} recording. When a recording is seven
-consecutive days the three rules pair the same epochs and agree almost exactly
-(Figure~\ref{fig:lines}, left); when a day is missing they pair \emph{different}
-epochs. The resulting bias is directional. With a gap, the calendar- and continuous-lag
-rules compare days that are further apart in real time, or offset from the true
-24\,h period. Sleep--wake patterns decorrelate as that interval grows, so the
-overlap, and hence the SRI, is pulled \emph{downward} (by about $22$ points at six
-valid days and $32$ at five). The
-published hand-Phillips rule instead skips the gap and compares only genuinely
-adjacent days, preserving the overlap; this is why the gapped recordings form the
-\emph{lower} clouds rather than symmetric scatter. This mechanism accounts for most
-of the structured disagreement (the $r=0.70$ between the
-\texttt{sleepreg}--published gap and the number of non-consecutive day boundaries).
-\item \textbf{Minimum-day default.} \texttt{sleepreg} returns no value below
-\texttt{minSRIdays}$=5$ valid comparison days; combined with its rule of dropping
-any day with $>6$\,h missing and counting only epoch-pairs observed on both days,
-NHANES's non-wear load pushes $30\%$ of participants below the threshold. The
-published calculation and \texttt{GGIR} impose no such minimum. Relaxing the default
-to three days recovers most of the sample but changes the estimate only marginally.
-\item \textbf{Epoch resolution.} The published calculation and \texttt{GGIR} compare
-1-min epochs; \texttt{sleepreg} re-expresses the series at 10-s resolution. On an
-already-minute-level binary series this contributes little, but it is a further
-source of small, systematic differences.
-\item \textbf{Missing-data / denominator convention.} Whether missing epochs are
-excluded (reducing the denominator) or imputed, and how, differs across
-implementations; in a companion multiverse analysis these imputation choices move
-the effect far less than the calculator choice, but they are not identical.
-\end{enumerate}
-I verified that each calculator computes its intended quantity correctly:
-on synthetic recordings with a known SRI, the Phillips formula, \texttt{GGIR} and
-\texttt{sleepreg} all returned $+100$ for seven identical days, $-100$ for
-perfectly alternating days and $0$ for days agreeing on half their epochs, and
-agreed on a pseudo-random pattern (Supplement). The divergence on real data is
-therefore a consequence of these algorithmic conventions, not of an
-implementation error. Nor is it an artefact of worse-fitting models:
-the fully adjusted model re-fitted with each calculator satisfied the regression
-assumptions equally well (near-identical residual skewness, kurtosis, variance
-inflation and homoscedasticity/linearity diagnostics; Supplement), so the
-attenuation under the packages is not a model-misspecification effect. I did,
-however, encounter one practical fragility: \texttt{sleepreg} (v1.3.5) aborts with an
-error when a recording begins exactly at local midnight, returning a missing value.
-Its pinned dependency on \texttt{GGIR}~2.0-0 also prevents installation alongside
-current \texttt{GGIR}, so I ran its SRI engine from source.
+\subsection{Fragmentation of the input and the level of the SRI}
+The released series shows a main sleep period at the expected time of day,
+cut into short pieces by brief awakenings and unknown epochs, with scattered
+short sleep bouts during the day (Figure~\ref{fig:rasters}). Fragmentation
+lowers the SRI because the index counts the epoch pairs 24\,h apart that
+are in the same state. A brief awakening or an unknown minute inside the sleep
+period that does not recur at the same clock time on the next night turns matching pairs into mismatches, as does a short daytime sleep bout on one day only. The classifier behind \texttt{PAXPREDM} [10]
+labels 30-second windows and returns no consolidated sleep period. The
+post-processing described in the survey documentation is limited to minimum
+durations of 3 minutes for wake and 10 minutes for sleep and non-wear and to
+an orientation rule [16]. The
+present data cannot decide which smoothing is appropriate. The rolling
+majority and the bridging rule leave total sleep almost unchanged, the 80\%
+rule removes approximately 100 minutes of sleep per day, and the main-sleep-period
+rule discards the naps that the SRI as defined by Phillips et al. [1]
+includes. The four variants do show that the smoothing decision is at least as important a
+reporting item as the calculator: it moved the level by up to 14 points and
+the effect size by up to two fifths. The spread of reported NHANES SRIs, from
+$78.1$ [7] to $63.0$ [8], is about as wide,
+and neither analysis published its code.
 
-The implications for the substantive conclusion are mixed. The
-\emph{direction} (more regular sleep, lower BMI, modified by sex and
-ethnicity) was reproduced by every calculator and is therefore robust. The
-\emph{magnitude}, and the strength of the effect modification, were not: moving
-from the published SRI to \texttt{sleepreg} shrank the effect to under a third of
-its size (about $-5\%$ to $-1.4\%$) and discarded a third of the sample. The
-results are better read as estimates: the family of plausible calculators maps to a
-range of effect sizes from about $-5\%$ to $-1.4\%$ (top vs bottom quintile), all in
-the same direction.
+\subsection{Calculators, gaps and defaults}
+Czeisler et al. [20] found score differences of approximately 20 points between
+\texttt{GGIR} and \texttt{sleepreg} in the UK Biobank, where mortality studies
+based on \texttt{sleepreg} [18] and on \texttt{GGIR} [19] differ in effect size. In their comparison the packages shared
+\texttt{GGIR}'s epoch states, but \texttt{sleepreg} then re-handled naps and
+awakenings with its own rules. In the present analysis that re-handling did
+not run, the series was identical down to the representation of its gaps, and
+the packages agreed. The two findings are compatible if the divergence in the
+UK Biobank arises in the derivation of the sleep/wake series, since the
+arithmetic of the index is the same in all packages. The packages differed at gaps in the data, where the index compares each epoch with the epoch exactly 24\,h later and has no pair when either is missing. A day deleted from a series instead of marked as
+missing is bridged without warning: \texttt{GGIR} pairs the date before the
+gap with the next date present, and \texttt{sleepreg} extends the last state
+over the gap. \texttt{sleepreg} also blanks any noon-to-noon day with more
+than 6\,h missing, so that a single excluded calendar day costs two of
+its comparison days. With the default minimum of five, no NHANES participant with a gap received a score. The 48\% lost in this way were selected by wear behaviour, since only participants with seven consecutive recorded days remain, and are not a random subset. None of these behaviours is an
+error in packages written for continuous raw recordings, but each is
+undocumented for a pre-classified series with excluded days, which is how a
+survey such as NHANES is used.
 
-These results should \emph{not} be read as significance verdicts. A
-reader applying a fixed $p<0.05$ threshold might treat the calculators whose
-intervals include 1 as showing ``no association'' and the rest as showing one, and
-so draw opposite conclusions from the same data. That dichotomy has no principled
-basis: the $0.05$ cutoff is arbitrary \citep{wasserstein2019}. The point across
-calculators is not that some cross a line and others do not, but that the whole
-family of estimates points the same way with a magnitude that depends on the
-calculator; the effect sizes and their intervals are better read as a continuum
-than as significant/non-significant verdicts.
+\subsection{Derivation from the raw signal and the association with BMI}
+Run on the raw signal of the same participants, the public code of SWaN
+produced a series with \rawSwanTransDay{} transitions per day where the released
+classification has \rawPaxpredmTransDay. The two series agree in \rawSwanAgreeAll\% of the minutes. The disagreement is concentrated in the minutes recorded in idle sleep mode (\rawSwanAgreeIsm\% against
+\rawSwanAgreeNon\%). Two differences between the runs can account for this:
+the released classification was produced with a procedure that replaces the
+ISM stretches by the 10 seconds of signal that precede them [16], whereas the rerun used the signal as recorded,
+and the version of the code behind the release is not documented. The
+fragmentation of the released series therefore does not follow from the public SWaN code. It belongs to the run that produced the release. The
+concentration of the disagreement in ISM minutes is consistent with a role of
+the ISM replacement, although the \texttt{GGIR} series, which involve no such
+replacement either, show the same concentration.
 
-Why does a downward-biased, noisier SRI \emph{weaken} the association rather than
-merely shift it? This is regression dilution: non-differential error in a
-continuous exposure attenuates its coefficient toward the null, the more so the
-larger the error. The packages inject such error, and they inject it almost entirely into the gapped
-$40\%$ of participants. Splitting the fully adjusted model by recording completeness
-makes the mechanism explicit (Section~\ref{sec:subgroup}): among the well-recorded
-$60\%$, where the calculators agree, the SRI--BMI factor is calculator-invariant
-($\approx0.94$ throughout). The entire calculator dependence of the overall estimate
-arises in the gapped subgroup, where the package SRIs are most degraded and their
-slopes approach the null (\texttt{sleepreg} $0.998$). The attenuation is thus a property not of the
-association but of the exposure \emph{measurement}: a quantitative example
-of the reproducibility problem RIRI describes.
+The association with BMI weakened with the derived series more than with the smoothed variants: on the same \rawModelN{} participants, the smoothed versions of the released classification gave fully adjusted factors of \rawSmoothedMBMin{} to \rawSmoothedMBMax{} and the derived series \rawSwanMBEst{} to \rawGgirSibMBEst{} (Table~\ref{tab:rawassoc}). The ratios of the fully adjusted factors to that of the released classification were \rawSwanMBRatioEst{} to \rawGgirSibMBRatioEst. The factors themselves, \rawSwanMBEst{} to \rawGgirSibMBEst, are compatible with no association as well as with a small inverse or a small positive one. Two readings remain open. If the derived series measure the construct with less noise, the published association was inflated by an error in the released series that is itself related to adiposity (daytime sleep, movement during sleep or non-wear labelled as sleep). Random error alone would have attenuated it, as regression dilution predicts. If the fragmentation carries information about sleep that is itself related to BMI,
+the derived series remove it. The present data cannot separate the two. They
+show that the size of the association depends on the processing pipeline more
+than on the calculator, with the fully adjusted factor, expressed as the percentage difference in BMI between the top and bottom quintile, from approximately $-5\%$ for the released classification ($-4.8\%$ on the same participants, $-4.5\%$ in the published sample) to approximately zero for the series derived anew from the signal (Table~\ref{tab:rawassoc}, Supplementary Table~S4). A reader who classifies results by whether the 95\% interval includes 1 would reach opposite conclusions from the same participants, an inverse association with the released classification and none with the derived series (Table~\ref{tab:rawassoc}). This reading is the one that Wasserstein et al. [23] advise against: an interval shows the effect sizes most compatible with the data under the model. Whether it includes 1 is not a result.
 
-\subsection{Why published NHANES SRIs disagree so widely}
-The spread that motivates this study (a median SRI of $84.5$ \citep[][Suppl.\ Table~8]{wang2023}, a
-mean of $63.0$ \citep{yang2024} and a median of $63.9$ in the published sample
-\citep{degenfellner2026}, all from the same NHANES 2011--2014 accelerometry) is
-wider than any single calculator produces here, and its origin cannot be recovered
-from the papers themselves. Beyond the SRI computation this study isolates, such
-analyses can differ in the sleep/wake source, the inclusion and non-wear filters,
-the epoch handling and the survey weighting. But because none release the code that
-produced the SRI, the reported values cannot be reconciled even when the stated
-definition is nominally the same. That unrecoverability, not any one
-calculator, is the reproducibility failure RIRI targets, and it is why reporting
-the full pipeline and sharing the code, as this reanalysis does, is the appropriate remedy.
+For the earlier study itself, the rebuilt series moved the fully adjusted
+estimate from $0.950$ to $0.955$ and left the sex pattern unchanged. The sex and race/ethnicity pattern of its Model 4 (its Figure~2) persisted under every input (Supplementary Table~S8, Figures~S6 and S7). Its
+Methods describe the final state of its code and not the computation behind
+its reported values. This difference does not change its conclusions, but it
+belongs beside its reported SRI values (Supplementary Section~3).
 
-These results support the RIRI recommendations even for datasets, like NHANES,
-where the sleep/wake classification is fixed. Authors should report the exact
-calculator and version, every non-default and default option (especially the
-minimum-day and missing-data rules), and, because the choice maps to a range of
-effect sizes, should present effect sizes with compatibility intervals rather
-than a single thresholded verdict. A limitation is that NHANES fixes the
-detection step, so my analysis isolates the computation component of the
-divergence; the raw-data detection component (not estimable here) would only add
-to it.
+\subsection{Limitations}
+The series was rebuilt from the public files with the filters as published,
+whereas the published scores came from earlier states of the processing code. The same-input baseline is hence the formula on the rebuilt series. The two give effect sizes that differ by $0.005$. No reference measure of sleep
+exists for these participants, so that the agreement between derivations is a
+concordance between algorithms. The sleep
+detection of \texttt{GGIR} was developed on other monitors [5, 12] and applied to recordings in idle sleep mode.
+The derivation covers a random sample of \rawNsample{} participants, about one
+seventh of the published sample, with correspondingly wider intervals. The summaries after the first 500 participants differed by less than a point from
+those after 1000 (Supplementary Table~S6). SWaN was run without the ISM
+replacement that the survey documentation describes and with the public
+version of its code, whose relation to the version behind the release is
+unknown. The autocalibration of \texttt{GGIR} depends on the floating-point precision of the processor. The derived series were computed on five platforms. For the 80 participants processed both on the Apple platform and on another machine, the sleep/wake minute labels of all three series were identical (Supplementary Section~7, Table~S5). The
+smoothing rules are simple post-processing steps without validation as sleep-period detectors. The main-sleep-period variant changes the construct by removing naps.
 
-\paragraph{Recommendations for NHANES SRI users.} (i) State the calculator and
-version and every minimum-day and missing-data option, default or not; these
-move both the estimate and the analytic sample. (ii) Prefer reporting effect
-sizes with compatibility intervals over a single thresholded verdict, since the
-plausible calculators map to a \emph{range} of effect sizes. (iii) Treat the
-minimum-day default as an analytic choice: in NHANES, \texttt{sleepreg}'s
-\texttt{minSRIdays}$=5$ silently removes a third of participants, and the loss is
-non-random with respect to wear time. (iv) Where feasible, report results under
-more than one calculator as a sensitivity analysis: a step beyond RIRI's disclosure
-checklist itself, but in keeping with its goal of reproducible SRI research
-\citep{czeisler2025}.
+\subsection{Reporting items for pre-classified series}
+The RIRI statement asks for the data processing tool, the quality control and the additional configurations of an SRI analysis [20]. For a pre-classified series, five details fill these items. (1) How the epoch-level series was derived (classifier,
+version, handling of the monitor's idle sleep mode), whether and how it was
+smoothed, and its fragmentation (transitions per day, bout lengths). (2) How
+excluded minutes and days were passed to the calculator, as missing values or
+as deletions, and whether the package's own inclusion criterion was applied to
+its day pairs. (3) The minimum-day rule and the analytic sample it leaves. (4)
+Effect sizes with compatibility intervals for each processing choice that was
+tried. (5) The state of the processing code that produced the reported values,
+archived with them. Item (4) asks for the interval as a range of compatible
+values. Figure~\ref{fig:cidance} shows why: in 20 samples simulated from the
+fitted model, the point estimates moved between \simTwoMfMin{} and
+\simTwoMfMax{} and the interval ends by more, while the factor that generated
+the data stayed at \simTwoTruth{}. One interval from one sample is one draw
+from this variation [17, 21]. The completed RIRI checklist of the present study is Supplementary Table~S1. A
+World Sleep Society specification for consumer sleep trackers [22] did not adopt the SRI, citing the lack of a standard computation. It specifies instead that the 30-second sleep/wake/unknown epoch array should be retained. Such an array needs to carry the classification, the smoothing
+applied to it, the inclusion filters and the position of its gaps.
 
-\section*{Acknowledgements}
-The author thanks the NHANES participants and the National Center for Health Statistics
-for collecting and releasing the data.
+\section{Conclusions}
+The level of the SRI in NHANES 2011--2014 depended on the sleep/wake input and
+only marginally on the calculator. Given the same series, the Phillips formula,
+\texttt{GGIR} and \texttt{sleepreg} agreed to 0.1 points. Smoothing the released
+classification raised the median SRI from 61 to 68--76. The three series derived
+anew from the raw signal scored 10 to 18 points higher than the release, and the
+released classification is more fragmented than a classification of the same
+signal with the public code of the same algorithm. The inverse SRI--BMI association kept its direction under every smoothed input and, with the Phillips formula and \texttt{GGIR}, lost a fifth to two fifths of its size. With the series derived anew from the raw signal the point estimates moved close to no association, with intervals reaching from a small inverse association near the published value to a small positive one. The packages differ in how they treat a
+recording gap. A day deleted instead of marked as missing changes the result
+without warning. Studies of the SRI should report the derivation and smoothing
+of the series, the treatment of gaps, the minimum-day rule and the remaining
+sample. The processing code should be archived with the results.
 
-\section*{Author contributions}
-J\"urgen Degenfellner is the sole author: he conceived the study, performed all
-analyses, and wrote and approved the manuscript.
+\section*{List of abbreviations}
+\begin{description}\setlength{\itemsep}{0pt}
+\item[BMI] body mass index
+\item[CI] confidence interval
+\item[IQR] interquartile range
+\item[ISM] idle sleep mode
+\item[MF] multiplication factor
+\item[NCHS] National Center for Health Statistics
+\item[NHANES] National Health and Nutrition Examination Survey
+\item[PAXPREDM] predicted sleep/wake state in the NHANES minute-level accelerometry files
+\item[RIRI] Reporting Items for Regularity Indices
+\item[SD] standard deviation
+\item[SIB] sustained inactivity bout
+\item[SPT] sleep period time
+\item[SRI] Sleep Regularity Index
+\item[SWaN] sleep-wear, wake-wear and nonwear classifier
+\end{description}
 
-\section*{Statements and declarations}
+\section*{Declarations}
 
-\paragraph{Ethical considerations.} This is a secondary analysis of de-identified,
-publicly available NHANES 2011--2014 data. The NHANES protocol was approved by the
-National Center for Health Statistics (NCHS) Research Ethics Review Board. No further
-ethics approval was required for this reanalysis.
+\paragraph{Ethics approval and consent to participate.} This is a secondary analysis of
+de-identified, publicly available NHANES 2011--2014 data. The NHANES protocol was
+approved by the National Center for Health Statistics (NCHS) Research Ethics Review
+Board, and all participants provided written informed consent at the time of the
+survey. No further ethics approval was required for this re-analysis.
 
-\paragraph{Consent to participate.} All NHANES participants provided written informed
-consent at the time of the original survey.
-
-\paragraph{Consent for publication.} Not applicable; the study uses de-identified
+\paragraph{Consent for publication.} Not applicable. The study uses de-identified
 public data and reports no individually identifiable information.
 
-\paragraph{Declaration of conflicting interests.} The author declared no potential
-conflicts of interest with respect to the research, authorship, and/or publication of
-this article.
+\paragraph{Availability of data and materials.} All data are NHANES 2011--2012 and 2013--2014
+public-use files of the US National Center for Health Statistics
+(\url{https://wwwn.cdc.gov/nchs/nhanes/}): the Physical Activity Monitor minute
+and header files (\texttt{PAXMIN}, \texttt{PAXHD}), the raw 80\,Hz
+acceleration files (\texttt{PAX80\_G} and \texttt{PAX80\_H}, one archive per
+participant, 2.45\,TB in total) and the covariate files of the earlier study.
+The companion repository
+(\url{https://github.com/jdegenfellner/SRI_BMI_NHANES_2026_reanalysis_public})
+contains the code of every step, the analytic covariate data set, the derived
+SRI values of every calculator and input variant, the minute-level sleep/wake
+series of every derivation, the container definition of the cloud runs and the
+code that reproduces the published SRI values exactly. A frozen copy with the
+recoded minute files and all intermediate series is archived at Zenodo
+(\url{https://doi.org/10.5281/zenodo.XXXXXXX}), so that every table and figure can be recomputed from the archived files without any download (run order in \texttt{code/revision\_2026-10/README.md}).
 
-\paragraph{Funding.} The author received no financial support for the research,
-authorship, and/or publication of this article.
+\paragraph{Competing interests.} The author declares no competing interests.
 
-\paragraph{Data availability.} All analyses use publicly available NHANES 2011--2014
-data (\url{https://www.cdc.gov/nchs/nhanes/}). Code to reconstruct the sleep/wake series
-and reproduce every table and figure is openly available at
-\url{https://github.com/jdegenfellner/SRI_BMI_NHANES_2026_reanalysis_public}.
+\paragraph{Funding.} The author received no financial support for the research, authorship or publication of this article.
 
-\section*{ORCID iD}
-J\"urgen Degenfellner \url{https://orcid.org/0000-0001-6886-4583}
+\paragraph{Authors' contributions.} JD conceived the study, performed all analyses,
+wrote the manuscript and approved the final version.
 
-\begin{thebibliography}{9}
-\bibitem[Czeisler et al.(2025)]{czeisler2025} Czeisler M\'E, et al. (2025) Comparison of
-Sleep Regularity Index scores calculated by open-source packages and implications for
-outcomes research: rationale and design of the RIRI statement. \emph{Sleep} 49(4): zsaf299.
-\bibitem[Degenfellner et al.(2026)]{degenfellner2026} Degenfellner J, Schernhammer ES,
-Strohmaier S (2026) Sex- and ethnic differences in the cross-sectional association between
-sleep regularity and obesity among US adults, NHANES 2011--2014. \emph{J Biol Rhythms}
-41(2): 205--218.
-\bibitem[Migueles et al.(2019)]{migueles2019} Migueles JH, Rowlands AV, Huber F, Sabia S,
-van Hees VT (2019) GGIR: a research community-driven open source R package for generating
-physical activity and sleep outcomes from multi-day raw accelerometer data.
-\emph{J Meas Phys Behav} 2(3): 188--196.
-\bibitem[Phillips et al.(2017)]{phillips2017} Phillips AJK, Clerx WM, O'Brien CS, Sano A,
-Barger LK, Picard RW, et al. (2017) Irregular sleep/wake patterns are associated with poorer
-academic performance and delayed circadian and sleep/wake timing. \emph{Sci Rep} 7: 3216.
-\bibitem[van Hees et al.(2015)]{vanhees2015} van Hees VT, Sabia S, Anderson KN, Denton SJ,
-Oliver J, Catt M, et al. (2015) A novel, open access method to assess sleep duration using a
-wrist-worn accelerometer. \emph{PLoS One} 10(11): e0142533.
-\bibitem[Wang et al.(2023)]{wang2023} Wang X, Xu Y, Li X, Mansuri A, McCall WV, Liu Y, et al.
-(2023) Day-to-day deviations in sleep parameters and biological aging: findings from the
-NHANES 2011--2014. \emph{Sleep Health} 9: 940--946.
-\bibitem[Wasserstein et al.(2019)]{wasserstein2019} Wasserstein RL, Schirm AL, Lazar NA (2019)
-Moving to a world beyond ``$p<0.05$''. \emph{Am Stat} 73(sup1): 1--19.
-\bibitem[Windred et al.(2021)]{windred2021} Windred DP, Jones SE, Russell A, Burns AC, Chan P,
-Weedon MN, et al. (2021) Objective assessment of sleep regularity in 60{,}000 UK Biobank
-participants using an open-source package. \emph{Sleep} 44(12): zsab254.
-\bibitem[Yang et al.(2024)]{yang2024} Yang L, Wallen G, Barb J, Maki K, Farmer N (2024) 0863
-Sleep regularity and cardiovascular health among U.S. adults. \emph{Sleep} 47: A370--A371.
-\end{thebibliography}
+\paragraph{Acknowledgements.} The author thanks the NHANES participants and the
+National Center for Health Statistics for collecting and releasing the data.
+
+\paragraph{Clinical trial number.} Not applicable.
+
+\paragraph{Use of artificial intelligence.} A large language model (Claude, Anthropic) assisted with drafting and language editing of the manuscript and with writing and executing the analysis code, as stated in the Methods. The author takes full responsibility for the content.
+
+\clearpage
+\section*{References}
+\begin{sloppypar}
+\setlength{\parindent}{0pt}
+\raggedright
+\hangindent=1.5em \hangafter=1 \noindent 1. Phillips AJK, Clerx WM, O'Brien CS, Sano A, Barger LK, Picard RW, Lockley SW, Klerman EB, Czeisler CA. Irregular sleep/wake patterns are associated with poorer academic performance and delayed circadian and sleep/wake timing. Sci Rep. 2017;7:3216. \url{https://doi.org/10.1038/s41598-017-03171-4}
+
+\hangindent=1.5em \hangafter=1 \noindent 2. Fischer D, Klerman EB, Phillips AJK. Measuring sleep regularity: theoretical properties and practical usage of existing metrics. Sleep. 2021;44(10):zsab103. \url{https://doi.org/10.1093/sleep/zsab103}
+
+\hangindent=1.5em \hangafter=1 \noindent 3. Windred DP, Jones SE, Russell A, Burns AC, Chan P, Weedon MN, Rutter MK, Olivier P, Vetter C, Saxena R, Lane JM, Cain SW, Phillips AJK. Objective assessment of sleep regularity in 60,000 UK Biobank participants using an open-source package. Sleep. 2021;44(12):zsab254. \url{https://doi.org/10.1093/sleep/zsab254}
+
+\hangindent=1.5em \hangafter=1 \noindent 4. Migueles JH, Rowlands AV, Huber F, Sabia S, van Hees VT. GGIR: a research community-driven open source R package for generating physical activity and sleep outcomes from multi-day raw accelerometer data. J Meas Phys Behav. 2019;2(3):188--96. \url{https://doi.org/10.1123/jmpb.2018-0063}
+
+\hangindent=1.5em \hangafter=1 \noindent 5. van Hees VT, Sabia S, Anderson KN, Denton SJ, Oliver J, Catt M, Abell JG, Kivim\"aki M, Trenell MI, Singh-Manoux A. A novel, open access method to assess sleep duration using a wrist-worn accelerometer. PLoS One. 2015;10(11):e0142533. \url{https://doi.org/10.1371/journal.pone.0142533}
+
+\hangindent=1.5em \hangafter=1 \noindent 6. Degenfellner J, Schernhammer ES, Strohmaier S. Sex- and ethnic differences in the cross-sectional association between sleep regularity and obesity among US adults, NHANES 2011--2014. J Biol Rhythms. 2026;41(2):205--18. \url{https://doi.org/10.1177/07487304251391267}
+
+\hangindent=1.5em \hangafter=1 \noindent 7. Wang X, Xu Y, Li X, Mansuri A, McCall WV, Liu Y. Day-to-day deviations in sleep parameters and biological aging: findings from the NHANES 2011--2014. Sleep Health. 2023;9(6):940--6. \url{https://doi.org/10.1016/j.sleh.2023.07.018}
+
+\hangindent=1.5em \hangafter=1 \noindent 8. Yang L, Wallen G, Barb J, Maki K, Farmer N. 0863 Sleep regularity and cardiovascular health among U.S. adults [conference abstract]. Sleep. 2024;47(Suppl 1):A370--1. \url{https://doi.org/10.1093/sleep/zsae067.0863}
+
+\hangindent=1.5em \hangafter=1 \noindent 9. Lunsford-Avery JR, Engelhard MM, Navar AM, Kollins SH. Validation of the sleep regularity index in older adults and associations with cardiometabolic risk. Sci Rep. 2018;8:14158. \url{https://doi.org/10.1038/s41598-018-32402-5}
+
+\hangindent=1.5em \hangafter=1 \noindent 10. Thapa-Chhetry B, Arguello DJ, John D, Intille S. Detecting sleep and nonwear in 24-h wrist accelerometer data from the National Health and Nutrition Examination Survey. Med Sci Sports Exerc. 2022;54(11):1936--46. \url{https://doi.org/10.1249/MSS.0000000000002973}
+
+\hangindent=1.5em \hangafter=1 \noindent 11. National Center for Health Statistics. National Health and Nutrition Examination Survey 2011--2012 data documentation, codebook, and frequencies: physical activity monitor, raw data 80 Hz (PAX80\_G). Hyattsville (MD): Centers for Disease Control and Prevention; 2022. \url{https://wwwn.cdc.gov/Nchs/Data/Nhanes/Public/2011/DataFiles/PAX80_G.htm}
+
+\hangindent=1.5em \hangafter=1 \noindent 12. van Hees VT, Sabia S, Jones SE, Wood AR, Anderson KN, Kivim\"aki M, Frayling TM, Pack AI, Bucan M, Trenell MI, Mazzotti DR, Gehrman PR, Singh-Manoux A, Weedon MN. Estimating sleep parameters using an accelerometer without sleep diary. Sci Rep. 2018;8:12975. \url{https://doi.org/10.1038/s41598-018-31266-z}
+
+\hangindent=1.5em \hangafter=1 \noindent 13. Hammad G, Reyt M, Beliy N, Baillet M, Deantoni M, Lesoinne A, Muto V, Schmidt C. pyActigraphy: open-source python package for actigraphy data visualization and analysis. PLoS Comput Biol. 2021;17(10):e1009514. \url{https://doi.org/10.1371/journal.pcbi.1009514}
+
+\hangindent=1.5em \hangafter=1 \noindent 14. van Hees VT, Fang Z, Langford J, Assah F, Mohammad A, da Silva ICM, Trenell MI, White T, Wareham NJ, Brage S. Autocalibration of accelerometer data for free-living physical activity assessment using local gravity and temperature: an evaluation on four continents. J Appl Physiol (1985). 2014;117(7):738--44. \url{https://doi.org/10.1152/japplphysiol.00421.2014}
+
+\hangindent=1.5em \hangafter=1 \noindent 15. Koffman L, Muschelli J. Minute level step counts and physical activity data from the National Health and Nutrition Examination Survey (NHANES) 2011--2014 (version 1.0.2) [data set]. PhysioNet; 2026. \url{https://doi.org/10.13026/d7sw-f662}
+
+\hangindent=1.5em \hangafter=1 \noindent 16. National Center for Health Statistics. National Health and Nutrition Examination Survey 2011--2012 data documentation, codebook, and frequencies: physical activity monitor, minute (PAXMIN\_G). Hyattsville (MD): Centers for Disease Control and Prevention; 2022. \url{https://wwwn.cdc.gov/Nchs/Data/Nhanes/Public/2011/DataFiles/PAXMIN_G.htm}
+
+\hangindent=1.5em \hangafter=1 \noindent 17. Cumming G. The new statistics: why and how. Psychol Sci. 2014;25(1):7--29. \url{https://doi.org/10.1177/0956797613504966}
+
+\hangindent=1.5em \hangafter=1 \noindent 18. Windred DP, Burns AC, Lane JM, Saxena R, Rutter MK, Cain SW, Phillips AJK. Sleep regularity is a stronger predictor of mortality risk than sleep duration: a prospective cohort study. Sleep. 2024;47(1):zsad253. \url{https://doi.org/10.1093/sleep/zsad253}
+
+\hangindent=1.5em \hangafter=1 \noindent 19. Cribb L, Sha R, Yiallourou S, Grima NA, Cavuoto M, Baril AA, Pase MP. Sleep regularity and mortality: a prospective analysis in the UK Biobank. eLife. 2023;12:RP88359. \url{https://doi.org/10.7554/eLife.88359}
+
+\hangindent=1.5em \hangafter=1 \noindent 20. Czeisler M\'E, Windred DP, Phillips AJK, Sabia S, van Hees VT, Rutter MK, Cain SW. Comparison of Sleep Regularity Index scores calculated by open-source packages and implications for outcomes research: rationale and design of the RIRI statement. Sleep. 2026;49(4):zsaf299. \url{https://doi.org/10.1093/sleep/zsaf299}
+
+\hangindent=1.5em \hangafter=1 \noindent 21. Greenland S, Senn SJ, Rothman KJ, Carlin JB, Poole C, Goodman SN, Altman DG. Statistical tests, P values, confidence intervals, and power: a guide to misinterpretations. Eur J Epidemiol. 2016;31(4):337--50. \url{https://doi.org/10.1007/s10654-016-0149-3}
+
+\hangindent=1.5em \hangafter=1 \noindent 22. Chee MWL, Baumert M, Drummond SPA, Scott H, Goldstein CA, de Zambotti M, Heneghan C, Leota J, Hao S, Cimesa L, Cellini N, Overeem S, Baron KG, Sharafkhaneh A, Penzel T, Kushida CA. Standardizing wearable sleep data for clinical, research, and public health use: a World Sleep Society specification. Sleep Med. 2026;109310. Advance online publication. \url{https://doi.org/10.1016/j.sleep.2026.109310}
+
+\hangindent=1.5em \hangafter=1 \noindent 23. Wasserstein RL, Schirm AL, Lazar NA. Moving to a world beyond ``$p < 0.05$''. Am Stat. 2019;73(sup1):1--19. \url{https://doi.org/10.1080/00031305.2019.1583913}
+\end{sloppypar}
 
 \end{document}

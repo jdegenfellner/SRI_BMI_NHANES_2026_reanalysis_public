@@ -1,0 +1,40 @@
+fixed series: 7085 participants
+  hand/GGIR 500/7085 (1.1 min)
+  hand/GGIR 1000/7085 (2.2 min)
+  hand/GGIR 1500/7085 (3.4 min)
+  hand/GGIR 2000/7085 (4.5 min)
+  hand/GGIR 2500/7085 (5.6 min)
+  hand/GGIR 3000/7085 (6.8 min)
+  hand/GGIR 3500/7085 (7.9 min)
+  hand/GGIR 4000/7085 (9.0 min)
+  hand/GGIR 4500/7085 (10.1 min)
+  hand/GGIR 5000/7085 (11.1 min)
+  hand/GGIR 5500/7085 (12.2 min)
+  hand/GGIR 6000/7085 (13.3 min)
+  hand/GGIR 6500/7085 (14.4 min)
+  hand/GGIR 7000/7085 (15.6 min)
+hand+GGIR done
+sleepreg min 5 done; n with SRI: 0 
+sleepreg min 3 done; n with SRI: 0 
+
+==== SRI with corrected clock vs old (shifted) timestamps ====
+SRI_orig           n=7085 median= 61.5 mean= 59.0 sd=16.8
+SRI_hand           n=7076 median= 61.3 mean= 58.6 sd=16.8
+SRI_GGIR_old       n=7085 median= 54.6 mean= 53.0 sd=17.5
+SRI_GGIR_fix       n=7085 median= 60.9 mean= 58.1 sd=16.7
+SRI_GGIR_fix_w     n=7085 median= 61.2 mean= 58.5 sd=16.5
+SRI_sleepreg_old   n=4964 median= 54.6 mean= 51.9 sd=19.4
+SRI_sleepreg_fix5  n=   0 median=   NA mean=  NaN sd=  NA
+SRI_sleepreg3_old  n=6796 median= 55.1 mean= 51.9 sd=20.0
+SRI_sleepreg_fix3  n=   0 median=   NA mean=  NaN sd=  NA
+r(GGIR fix, GGIR old) = 0.8507  r(sleepreg fix5, old) = NA 
+r(GGIR fix, orig) = 0.947  r(sleepreg fix5, orig) = NA 
+sleepreg attrition: old 29.9 %  fixed(min5) 100 %  fixed(min3) 100 %
+models: SRI_GGIR_old done
+models: SRI_GGIR_fix done
+models: SRI_GGIR_fix_w done
+models: SRI_sleepreg_old done
+Error in cut.default(SRI, quantile(SRI, 0:5/5), include.lowest = TRUE,  : 
+  number of intervals and length of 'labels' differ
+Calls: cbind ... [ -> [.data.table -> eval -> eval -> cut -> cut.default
+Execution halted

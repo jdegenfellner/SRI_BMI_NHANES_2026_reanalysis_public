@@ -1,0 +1,9 @@
+Warning messages:
+1: Removed 45 rows containing non-finite outside the scale range (`stat_bin()`). 
+2: Removed 10 rows containing missing values or values outside the scale range
+(`geom_bar()`). 
+Warning messages:
+1: Removed 45 rows containing non-finite outside the scale range (`stat_bin()`). 
+2: Removed 10 rows containing missing values or values outside the scale range
+(`geom_bar()`). 
+DONE

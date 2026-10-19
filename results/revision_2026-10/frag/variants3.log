@@ -1,0 +1,30 @@
+participants: 7085  rows: 66152160  blocks: 9373 
+variants built
+
+==== validation: hand SRI on raw vs published SRI_orig ====
+r = 0.96218  max|diff| = 61.8223 
+
+==== SRI distribution by input variant (n = 7085 ) ====
+raw       median  61.3  mean  58.6  sd 16.8  Q1  48.5  Q3  71.1  min  -18.6  | r with raw 1.000 | transitions/day 17.7 | longest sleep run (median min)  133 | sleep min/day  470
+maj1h50   median  69.1  mean  65.7  sd 17.6  Q1  55.7  Q3  78.7  min  -22.1  | r with raw 0.972 | transitions/day  4.2 | longest sleep run (median min)  144 | sleep min/day  475
+ggir1h80  median  69.7  mean  67.4  sd 14.8  Q1  59.4  Q3  78.0  min   -9.5  | r with raw 0.890 | transitions/day  4.5 | longest sleep run (median min)  135 | sleep min/day  367
+bridgeNA30 median  61.8  mean  59.1  sd 16.9  Q1  49.1  Q3  71.9  min  -18.5  | r with raw 0.996 | transitions/day 14.9 | longest sleep run (median min)  314 | sleep min/day  486
+sptNA     median  68.7  mean  67.7  sd 10.3  Q1  61.8  Q3  74.7  min   -4.0  | r with raw 0.360 | transitions/day  2.3 | longest sleep run (median min)  314 | sleep min/day  221
+models: published done
+models: raw done
+models: maj1h50 done
+models: ggir1h80 done
+models: bridgeNA30 done
+models: sptNA done
+
+==== MF Q1->Q5 on BMI by sleep/wake INPUT variant (hand/Phillips SRI, published Table-3 recipe, 200 bootstrap) ====
+                        variant     n  dSRI medQ1 medQ5                   M1                   M2                    M3_ref                    M3_other
+                         <char> <int> <num> <num> <num>               <char>               <char>                    <char>                      <char>
+1: published (orig, winsorised)  7085  42.9  35.5  78.4 0.923 (0.907, 0.941) 0.950 (0.930, 0.969) Male 0.982 (0.957, 1.005) Female 0.918 (0.891, 0.945)
+2:                          raw  7076  42.4  35.4  77.8 0.926 (0.911, 0.945) 0.955 (0.936, 0.976) Male 0.987 (0.962, 1.013) Female 0.922 (0.902, 0.949)
+3:                      maj1h50  7076  43.6  41.5  85.1 0.934 (0.918, 0.951) 0.964 (0.947, 0.983) Male 0.994 (0.969, 1.019) Female 0.933 (0.910, 0.958)
+4:                     ggir1h80  7076  36.4  47.8  84.1 0.940 (0.922, 0.956) 0.969 (0.952, 0.986) Male 1.002 (0.980, 1.025) Female 0.936 (0.910, 0.963)
+5:                   bridgeNA30  7076  42.6  35.8  78.4 0.927 (0.911, 0.945) 0.957 (0.937, 0.977) Male 0.988 (0.965, 1.014) Female 0.925 (0.904, 0.951)
+6:                        sptNA  7076  25.1  54.7  79.8 1.008 (0.992, 1.024) 1.023 (1.007, 1.038) Male 1.038 (1.018, 1.061) Female 1.010 (0.989, 1.033)
+
+DONE

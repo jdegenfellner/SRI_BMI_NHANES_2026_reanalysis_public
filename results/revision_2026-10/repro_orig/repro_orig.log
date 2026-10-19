@@ -1,0 +1,93 @@
+verbatim filter function: lines 494 to 621 
+
+==================== cycle 1112 ====================
+raw: tbl_df 78126856 rows; 6917 SEQN; PAXPREDM class: factor 
+
+    wake    sleep non-wear  unknown 
+43080727 23471224  8858522  2716383 
+PAXDAYWM class: character  first rows order check (SEQN, PAXDAYM, PAXSSNMP):
+# A tibble: 3 × 3
+   SEQN PAXDAYM PAXSSNMP
+  <dbl> <chr>      <dbl>
+1 62161 1              0
+2 62161 1           4800
+3 62161 1           9600
+filtered: 47707200 rows; 5243 SEQN;  tracker:
+                      initial              after_60s_filter 
+                         6917                          6917 
+    after_quality_flag_filter         after_non_wear_filter 
+                         6916                          6341 
+      after_time_steps_filter after_consecutive_days_filter 
+                         6291                          5459 
+     after_missingness_filter 
+                         5243 
+rows lost %: 38.94  missingness binary_sleep: 0.066 
+loop vs vectorised on 25 SEQN: max |diff| = 0 ; N_v identical: TRUE 
+published n: 4879  reproduced n: 5243  both: 4879  only published: 0  only reproduced: 341 
+exact (<1e-6): 1803  within 0.01: 1813  within 1: 2633  r = 0.98317 
+     Min.   1st Qu.    Median      Mean   3rd Qu.      Max. 
+-24.57914  -1.43272   0.00000  -0.54485   0.04974  61.82234 
+       50%        90%        99%       100% 
+ 0.7656166  4.8281779 11.0251771 61.8223379 
+series SEQN: 5243  orig-filter SEQN: 5243  common: 5243 
+identical rows/NA/sleep/days per SEQN: 5243 of 5243 
+hand (reanalysis) vs published: r = 0.98278  exact: 1242  | hand vs orig-filter-vec: r = 1  exact: 3677 of 3677 
+worst 8 published-vs-reproduced:
+    SEQN    SRI_pub   SRI_vec         d   N_v n_rows  n_na   days
+   <num>      <num>     <num>     <num> <int>  <int> <int> <char>
+1: 71478 -59.906030  1.916308  61.82234  2557   7200   359  24678
+2: 63466   3.282828 28.614640  25.33181  1653   7200  1262  24678
+3: 69691  57.156534 32.577394 -24.57914  5556   8640   164 234568
+4: 67203  55.294118 31.403337 -23.89078  2038   7200   918  23578
+5: 64616  57.754011 35.773253 -21.98076  3634   8640  2060 235678
+6: 69620  73.734409 54.106464 -19.62795  5260   8640   433 234578
+7: 62251  76.744186 59.653204 -17.09098  4729   8640   926 234678
+8: 64551  27.705628 44.544709  16.83908  3657   8640  1151 234578
+cycle done in 1.7 min
+
+==================== cycle 1314 ====================
+raw: tbl_df 88223479 rows; 7776 SEQN; PAXPREDM class: factor 
+
+    wake    sleep non-wear  unknown 
+47112094 26073307 12091619  2946459 
+PAXDAYWM class: character  first rows order check (SEQN, PAXDAYM, PAXSSNMP):
+# A tibble: 3 × 3
+   SEQN PAXDAYM PAXSSNMP
+  <dbl> <chr>      <dbl>
+1 73557 1              0
+2 73557 1           4800
+3 73557 1           9600
+filtered: 50490720 rows; 5562 SEQN;  tracker:
+                      initial              after_60s_filter 
+                         7776                          7776 
+    after_quality_flag_filter         after_non_wear_filter 
+                         7773                          6903 
+      after_time_steps_filter after_consecutive_days_filter 
+                         6832                          5882 
+     after_missingness_filter 
+                         5562 
+rows lost %: 42.77  missingness binary_sleep: 0.0656 
+loop vs vectorised on 25 SEQN: max |diff| = 0 ; N_v identical: TRUE 
+published n: 5659  reproduced n: 5562  both: 4796  only published: 861  only reproduced: 741 
+exact (<1e-6): 509  within 0.01: 518  within 1: 1367  r = 0.9289 
+    Min.  1st Qu.   Median     Mean  3rd Qu.     Max. 
+-86.2139  -2.5555   0.0000  -0.2893   2.1033  28.9347 
+      50%       90%       99%      100% 
+ 2.302883  8.921637 22.709468 86.213912 
+series SEQN: 5562  orig-filter SEQN: 5562  common: 5562 
+identical rows/NA/sleep/days per SEQN: 5562 of 5562 
+hand (reanalysis) vs published: r = 0.93909  exact: 369  | hand vs orig-filter-vec: r = 1  exact: 3399 of 3399 
+worst 8 published-vs-reproduced:
+    SEQN  SRI_pub    SRI_vec         d   N_v n_rows  n_na   days
+   <num>    <num>      <num>     <num> <int>  <int> <int> <char>
+1: 79066 62.03091 -24.183007 -86.21391   459   7200  1748  24678
+2: 81492 91.52003  31.489658 -60.03038  4303   8640   820 235678
+3: 83490 84.74854  32.551849 -52.19669  1109   4320   361    256
+4: 76279 70.30812  22.289437 -48.01869  2149   7200   778  23578
+5: 82335 39.57205  -6.392871 -45.96493  2581   5760   294   2346
+6: 82692 28.52542 -16.385911 -44.91133  5224   8640   488 234568
+7: 80825 42.26909  -0.385505 -42.65459  1297   5760   261   2467
+8: 76817 71.42857  33.487476 -37.94110  2595   7200   368  24678
+cycle done in 1.9 min
+
+ALL DONE

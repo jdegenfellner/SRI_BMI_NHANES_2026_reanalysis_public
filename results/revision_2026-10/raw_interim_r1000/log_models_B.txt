@@ -1,0 +1,45 @@
+sample 997, models on 994 participants (SRI column sri_B)
+  bootstrap 25/200
+  bootstrap 50/200
+  bootstrap 75/200
+  bootstrap 100/200
+  bootstrap 125/200
+  bootstrap 150/200
+  bootstrap 175/200
+  bootstrap 200/200
+
+== multiplicative factors Q1 -> Q5 (95% bootstrap interval) ==
+      series   model     n  dSRI                   MF
+      <char>  <char> <int> <num>               <char>
+ 1: PAXPREDM      MA   994  43.0 0.920 (0.882, 0.965)
+ 2: PAXPREDM      MB   994  43.0 0.953 (0.909, 0.998)
+ 3: PAXPREDM   MCref   994  43.0 1.017 (0.959, 1.071)
+ 4: PAXPREDM MCother   994  43.0 0.887 (0.821, 0.936)
+ 5: GGIR SIB      MA   994  25.8 0.974 (0.936, 1.013)
+ 6: GGIR SIB      MB   994  25.8 1.009 (0.969, 1.045)
+ 7: GGIR SIB   MCref   994  25.8 1.053 (0.994, 1.105)
+ 8: GGIR SIB MCother   994  25.8 0.975 (0.924, 1.033)
+ 9: GGIR SPT      MA   994  33.8 0.965 (0.927, 1.001)
+10: GGIR SPT      MB   994  33.8 1.001 (0.960, 1.036)
+11: GGIR SPT   MCref   994  33.8 1.028 (0.968, 1.082)
+12: GGIR SPT MCother   994  33.8 0.976 (0.925, 1.023)
+13:     SWaN      MA   994  38.5 0.961 (0.924, 0.997)
+14:     SWaN      MB   994  38.5 0.997 (0.962, 1.032)
+15:     SWaN   MCref   994  38.5 1.033 (0.979, 1.079)
+16:     SWaN MCother   994  38.5 0.962 (0.906, 1.020)
+
+== ratio of the multiplicative factor to PAXPREDM (same participants, same bootstrap samples) ==
+      series   model                ratio
+      <char>  <char>               <char>
+ 1: GGIR SIB      MA 1.059 (1.030, 1.091)
+ 2: GGIR SIB      MB 1.058 (1.023, 1.102)
+ 3: GGIR SIB   MCref 1.035 (0.995, 1.075)
+ 4: GGIR SIB MCother 1.099 (1.055, 1.167)
+ 5: GGIR SPT      MA 1.049 (1.020, 1.076)
+ 6: GGIR SPT      MB 1.049 (1.016, 1.089)
+ 7: GGIR SPT   MCref 1.011 (0.971, 1.044)
+ 8: GGIR SPT MCother 1.100 (1.047, 1.155)
+ 9:     SWaN      MA 1.045 (1.017, 1.072)
+10:     SWaN      MB 1.046 (1.015, 1.085)
+11:     SWaN   MCref 1.016 (0.983, 1.049)
+12:     SWaN MCother 1.084 (1.028, 1.152)

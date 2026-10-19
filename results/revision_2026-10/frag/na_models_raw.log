@@ -1,0 +1,15 @@
+[ raw ] SRI_hand done
+[ raw ] SRI_GGIR done
+[ raw ] SRI_sleepregE5 done
+[ raw ] SRI_sleepregE3 done
+[ raw ] SRI_sleepreg5 done
+[ raw ] SRI_sleepreg3 done
+       calculator     n  dSRI                   M2                    M3_other
+           <char> <int> <num>               <char>                      <char>
+1:       SRI_hand  7076  42.4 0.955 (0.936, 0.976) Female 0.922 (0.902, 0.949)
+2:       SRI_GGIR  7071  42.3 0.955 (0.940, 0.974) Female 0.921 (0.899, 0.941)
+3: SRI_sleepregE5  3673  41.6 0.938 (0.915, 0.964) Female 0.906 (0.874, 0.939)
+4: SRI_sleepregE3  5342  42.2 0.942 (0.923, 0.964) Female 0.910 (0.884, 0.933)
+5:  SRI_sleepreg5  2253  35.9 0.959 (0.924, 0.988) Female 0.930 (0.896, 0.965)
+6:  SRI_sleepreg3  5051  42.4 0.945 (0.925, 0.968) Female 0.915 (0.892, 0.943)
+DONE

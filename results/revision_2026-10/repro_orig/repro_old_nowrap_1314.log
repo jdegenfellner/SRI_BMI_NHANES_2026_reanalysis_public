@@ -1,0 +1,22 @@
+            used   (Mb) gc trigger    (Mb) limit (Mb)   max used    (Mb)
+Ncells    647852   34.6    1714408    91.6         NA    1714408    91.6
+Vcells 965831765 7368.8 3306195688 25224.3      36864 4132741942 31530.4
+            used   (Mb) gc trigger    (Mb) limit (Mb)   max used    (Mb)
+Ncells    647863   34.6    1714408    91.6         NA    1714408    91.6
+Vcells 965833811 7368.8 2644956551 20179.5      36864 4132741942 31530.4
+old filter n = 5659 
+old filter, wrap                         n= 5659 common= 5657 onlyPub=   0 onlyRep=   0 exact=  541 (9.6%) within0.01=  558 r=0.98481  NA_rep=2 NA_pub=2
+old filter, NO wrap                      n= 5659 common= 5657 onlyPub=   0 onlyRep=   0 exact= 5657 (100.0%) within0.01= 5657 r=1.00000  NA_rep=2 NA_pub=2
+after dropping partial days: n = 5606 
+old filter, partial days dropped, wrap   n= 5606 common= 5310 onlyPub= 347 onlyRep=   0 exact=  652 (12.3%) within0.01=  658 r=0.92552  NA_rep=296 NA_pub=2
+old filter, partial days dropped, NO wrap n= 5606 common= 5269 onlyPub= 388 onlyRep=   0 exact=  666 (12.6%) within0.01=  682 r=0.93548  NA_rep=337 NA_pub=2
+worst 5 (no wrap, partial kept):
+Key: <SEQN>
+    SEQN   N_v delta      SRI  SRI_pub
+   <num> <int> <int>    <num>    <num>
+1: 73558  5341  4773 78.73057 78.73057
+2: 73559  7706  6431 66.90890 66.90890
+3: 73560  6433  5969 85.57438 85.57438
+4: 73561  6999  5313 51.82169 51.82169
+5: 73562  7901  5971 51.14542 51.14542
+OLD NOWRAP DONE

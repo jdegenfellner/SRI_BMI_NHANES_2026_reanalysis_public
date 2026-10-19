@@ -1,0 +1,64 @@
+PAXHD_G columns: SEQN, PAXSTS, PAXSENID, PAXFDAY, PAXLDAY, PAXFTIME, PAXETLDY, PAXHAND, PAXORENT 
+    SEQN PAXSTS      PAXSENID PAXFDAY PAXLDAY PAXFTIME PAXETLDY PAXHAND
+   <num>  <num>        <char>  <char>  <char>   <char>   <char>  <char>
+1: 62161      1 NEO1G62402505       7       9 12:30:00 12:39:29       1
+2: 62163      1 NEO1G78016948       7       9 17:30:00 17:38:59       1
+3: 62164      1 NEO1G14270410       1       9 12:30:00 12:38:58       1
+4: 62165      1 NEO1G81122824       7       9 12:30:00 12:39:29       1
+   PAXORENT
+     <char>
+1:        1
+2:        1
+3:        1
+4:        1
+class PAXFTIME: character  unique first 10: 12:30:00 | 17:30:00 |  | 21:30:00 | 17:33:00 | 16:30:00 | 14:17:00 | 11:15:00 | 10:42:00 | 14:29:00 
+
+range tod_h: 0 23.98333 
+
+== share classified asleep by TRUE clock hour ==
+     hour p_sleep
+    <num>   <num>
+ 1:     0   0.693
+ 2:     1   0.786
+ 3:     2   0.832
+ 4:     3   0.848
+ 5:     4   0.833
+ 6:     5   0.755
+ 7:     6   0.595
+ 8:     7   0.396
+ 9:     8   0.259
+10:     9   0.175
+11:    10   0.124
+12:    11   0.099
+13:    12   0.089
+14:    13   0.093
+15:    14   0.099
+16:    15   0.100
+17:    16   0.099
+18:    17   0.091
+19:    18   0.089
+20:    19   0.099
+21:    20   0.134
+22:    21   0.210
+23:    22   0.350
+24:    23   0.537
+     hour p_sleep
+    <num>   <num>
+share of all sleep minutes 10:00-20:00: 0.119 
+share of all sleep minutes 22:00-08:00: 0.788 
+
+== 23:00-06:00 window: sleep<->wake transitions per night ==
+10% 25% 50% 75% 90% 95% 
+  3   5   8  11  15  17 
+mean p(sleep) 23-06: 0.763  median: 0.818 
+== wake bout lengths inside 23-06 (min) ==
+25% 50% 75% 90% 95% 
+  3   5  18  57  92 
+share of night wake MINUTES in bouts <=5 min: 0.077  <=15: 0.161  >=30: 0.743 
+
+== daytime (10-20h) sleep bouts: per participant-day count and length ==
+bouts per day median: 2 
+25% 50% 75% 90% 95% 
+ 11  17  32  58  83 
+daytime sleep minutes per day, median: 54 
+DONE

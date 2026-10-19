@@ -1,0 +1,24 @@
+
+==== cycle 2011_12  common n = 4879 ====
+variant A: exact  1803 (37.0%)  within 0.5:  2207  r = 0.9832  mean diff = -0.545
+variant B: exact     0 (0.0%)  within 0.5:   225  r = 0.9796  mean diff = -3.351
+variant C: exact  1259 (25.8%)  within 0.5:  1688  r = 0.9364  mean diff = -2.178
+variant D: exact     0 (0.0%)  within 0.5:   201  r = 0.9409  mean diff = -4.723
+variant E: exact     0 (0.0%)  within 0.5:    73  r = 0.9693  mean diff = -6.380
+variant F: exact   939 (19.2%)  within 0.5:  1426  r = 0.9690  mean diff = -0.656
+variant A exact-match rate by unknown minutes == 0:
+   no_unknown     n exact
+       <lgcl> <int> <num>
+1:      FALSE  4879  0.37
+variant A exact-match rate by non-wear minutes == 0:
+   no_nonwear     n exact
+       <lgcl> <int> <num>
+1:      FALSE  1642 0.365
+2:       TRUE  3237 0.372
+variant A exact-match rate, neither unknown nor non-wear:
+    clean     n exact
+   <lgcl> <int> <num>
+1:  FALSE  4879  0.37
+Error in sys.frame(1) : not that many frames on the stack
+Calls: saveRDS -> file.path -> dirname -> %||% -> sys.frame
+Execution halted

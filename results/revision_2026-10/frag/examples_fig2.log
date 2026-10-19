@@ -1,0 +1,17 @@
+Warning messages:
+1: In grid.Call.graphics(C_text, as.graphicsAnnot(x$label), x$x, x$y,  :
+  for '(≥50% sleep → sleep)' in 'mbcsToSbcs': >= substituted for ≥ (U+2265)
+2: In grid.Call.graphics(C_text, as.graphicsAnnot(x$label), x$x, x$y,  :
+  for '(≥50% sleep → sleep)' in 'mbcsToSbcs': -> substituted for → (U+2192)
+                               panel trans_raw  trans_br trans_maj sleep_raw
+                              <fctr>     <num>     <num>     <num>     <num>
+1: Participant A  (published SRI 48)  22.28571 17.714286  4.857143  491.8571
+2: Participant C  (published SRI 70)  10.42857  8.428571  2.714286  339.8571
+3: Participant B  (published SRI 60)  22.00000 19.428571  4.142857  427.5714
+   sleep_br sleep_maj
+      <num>     <num>
+1: 496.5714  488.2857
+2: 356.1429  345.8571
+3: 460.0000  430.2857
+picked SEQN: 77888 81486 79086 
+DONE

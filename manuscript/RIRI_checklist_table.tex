@@ -1,0 +1,33 @@
+{\footnotesize\setlength{\tabcolsep}{4pt}
+\begin{longtable}{p{0.035\textwidth}p{0.27\textwidth}p{0.62\textwidth}}
+\caption{RIRI reporting items [20] (Table~5) for the present re-analysis.}
+\label{tab:riri}\\
+\toprule
+\# & Item & This study \\
+\midrule
+\endfirsthead
+\multicolumn{3}{l}{\emph{Table S1, continued}}\\
+\toprule
+\# & Item & This study \\
+\midrule
+\endhead
+\bottomrule
+\endlastfoot
+\multicolumn{3}{l}{\emph{Methods}} \\
+1 & Data collection process & NHANES 2011--2014, wrist-worn ActiGraph GT3X+ worn 24 h for up to 9 days. NCHS released a minute-level wake/sleep/non-wear/unknown classification (\texttt{PAXPREDM}). No sleep diaries. The raw 80\,Hz signal of the same recordings was processed again with \texttt{GGIR} and the public SWaN code (main text Sections~\ref{sec:rebuild} and \ref{sec:rawmethods}). \\
+2 & Performance of measure & \texttt{PAXPREDM} classifier [10]: F1 0.84 (sleep-wear vs wake-wear) and 0.94 (wake-wear vs non-wear) on independent validation sets against polysomnography and diaries. Epoch-level fragmentation of the released series is reported in main text Table~\ref{tab:frag}. \\
+3 & Duration of recording interval & 3 to 7 complete calendar days per participant after the published filters (median 7, 60\% with seven consecutive days, main text Section~\ref{sec:rebuild}). \\
+4 & Frequency of measure & 80-Hz raw acceleration summarised by NCHS to 1-minute epochs; SRI computed at 1-minute epochs (\texttt{sleepreg}: re-expressed at 10 s; \texttt{GGIR}: 1-min epochs as supplied, since the function aggregates only epochs shorter than 30 s). Raw signal: 5-s epochs (\texttt{GGIR}) and 30-s windows (SWaN), aggregated to 1-minute labels. No other down-sampling (Table~\ref{tab:S_versions}). \\
+5 & Data processing tool, if applicable & Released minute classification (\texttt{PAXPREDM}) with four smoothing variants (rolling majority; \texttt{GGIR} SRI1 rule; bridging of awakenings $<$30 min and removal of isolated sleep $<$30 min; main sleep period only). Raw signal, in a random sample of \rawPrefixR{} participants (main text Section~\ref{sec:rawmethods}): \texttt{GGIR} 3.3-6 (autocalibration, ENMO and z-angle, default non-wear detection, sleep period by HDCZA, sustained inactivity bouts by the van Hees rule) and \texttt{swan\_accel} 1.18 (SWaN); settings in Table~\ref{tab:S_versions}; code shared. \\
+6 & Quality control & Published filters: full-minute epochs, no quality flag, $\geq 3$ days with $<120$ min non-wear, days of exactly 1440 minutes, $\geq 3$ consecutive days incl.\ a weekend day, $<30\%$ missing minutes. Excluded minutes and days carried as missing in one continuous timeline from monitor placement. \texttt{GGIR} day pairs kept only with $\geq 66\%$ valid epoch pairs. \texttt{sleepreg} day exclusion ($>6$ h missing) and minimum comparison days (5 and 3) as per package (main text Section~\ref{sec:rebuild}, Table~\ref{tab:S_versions}). \\
+7 & Mathematical formula & $\mathrm{SRI} = -100 + \frac{200}{N_v}\sum 1[s_i = s_{i+1440}]$ over valid epoch pairs 24 h apart [1], days paired by weekday index in the published implementation (main text Section~\ref{sec:calculators}). \\
+8 & Regularity index calculator, if applicable & Custom R code (published implementation), \texttt{GGIR} 3.3-6 \texttt{CalcSleepRegularityIndex} (SRI1 engine, smoothing off), \texttt{sleepreg} 1.3.5 \texttt{SRI\_from\_binary} run from source, and \texttt{pyActigraphy} \texttt{sri()} for verification (Table~\ref{tab:S_versions}). \\
+\multicolumn{3}{l}{\emph{Results}} \\
+9 & Participant flow and data collection & Participants with minute files: 6917 (2011--2012) and 7776 (2013--2014). Remaining after each filter (2011--2012 / 2013--2014): full-minute epochs 6917 / 7776, no quality flag 6916 / 7773, non-wear rule 6341 / 6903, 1440-minute days 6291 / 6832, consecutive days with a weekend day 5459 / 5882, missingness 5243 / 5562. Analytic sample after covariate availability: 7085 (published flow chart). SRI available for 7076 (formula), 7071 to 7073 (\texttt{GGIR}) and 3673 to 3854 / 5342 to 5423 (\texttt{sleepreg}, 5 / 3 comparison days), depending on the input (Section~\ref{sec:S_inputs}). \\
+10 & Percentage of data collection interval with data available & 66.2 million retained minutes. About 6\% of retained minutes are non-wear or unknown (1.7\% and 4.2\%). Of the participants, 40\% have fewer than seven consecutive complete days (Section~\ref{sec:S_inputs}). \\
+11 & Descriptive statistics & Median by input variant and calculator (main text Table~\ref{tab:grid}); distributions in Figure~\ref{fig:S_sridist}; by sex in the published study. \\
+12 & Comparison with previously published data & Published NHANES values [6--8], UK Biobank [3, 20] and MESA [9] discussed in the Introduction and Discussion of the main text. \\
+\multicolumn{3}{l}{\emph{Other information}} \\
+13 & Additional configurations & Package defaults except: \texttt{sleepreg} \texttt{minSRIdays} 5 (default) and 3; timestamps offset by 30 s for \texttt{sleepreg}; \texttt{GGIR} smoothing options unset for the calculator comparison and re-implemented as an input variant (Table~\ref{tab:S_versions}). Raw-data processing at package defaults except the arguments in Table~\ref{tab:S_versions}. \\
+14 & Availability of data, code, and other materials & NHANES public files; derived data, synthetic test recordings, the minute-level series of every derivation, the container definition of the cloud runs and all code in the companion repository and the Zenodo archive (main text, Data availability). \\
+\end{longtable}}

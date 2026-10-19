@@ -23,11 +23,17 @@ frozen as dated snapshots (Aug 2024): `published_SRI_2011_12.RDS` and
 materialises them as `data/published_sri.csv` and verifies they equal the
 "Original / published" column used everywhere (7085/7085 participants, cor = 1).
 
-Reproducibility caveat: re-running the *original preparation code* on the current
-NHANES data does **not** reproduce these values bit-for-bit — that code base drifted
-after the snapshot was frozen, so a fresh run correlates only ~0.95 with the
-published values. The shipped snapshot is therefore the authoritative source, and
-this re-analysis uses it rather than re-computing the published SRI.
+Reproducibility note: the final state of the original preparation code does
+**not** reproduce these snapshots (r = 0.96 with the published values). The
+snapshots were computed with two earlier states of that code, one per cycle:
+2011-12 with a filter requiring five days and 2013-14 with a day-level non-wear
+rule that kept the partial placement and removal days; both paired minute i with
+minute i+1440 in recording order and omitted the Saturday-to-Sunday day pair.
+`code/revision_2026-10/repro_published_sri.R` reproduces every published value
+exactly from the public minute files with those two code states (4879/4879 and
+5657/5657 participants). The re-analysis uses the Phillips formula on the series
+rebuilt with the final code (the one the published Methods describe) as its
+same-input baseline and reports the published values alongside.
 
 ## What is shipped vs. downloaded
 **Shipped in `data/`** — small derived files (reformatted from the public sources

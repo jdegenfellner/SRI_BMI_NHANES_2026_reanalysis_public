@@ -1,0 +1,9 @@
+cycle,variant,n,n_published,common,only_published,only_reproduced,exact,r
+2011_12,"final filter, final pairing (wrap)",5243,4879,4879,0,341,1803,0.983168316508696
+2011_12,"final filter, no wrap",5243,4879,4879,0,329,4879,1
+2011_12,"filter_2011_12_state.R, wrap",4879,4879,4879,0,0,1803,0.983168316508696
+2011_12,"filter_2011_12_state.R, no wrap  <- published",4879,4879,4879,0,0,4879,1
+2013_14,"final filter, final pairing (wrap)",5562,5659,4796,861,741,509,0.928896857047404
+2013_14,"final filter, no wrap",5562,5659,4780,877,741,515,0.943505106545232
+2013_14,"filter_2013_14_state.R, wrap",5659,5659,5657,0,0,541,0.984813647364452
+2013_14,"filter_2013_14_state.R, no wrap  <- published",5659,5659,5657,0,0,5657,1

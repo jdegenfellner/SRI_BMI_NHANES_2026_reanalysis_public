@@ -1,0 +1,18 @@
+            used   (Mb) gc trigger    (Mb) limit (Mb)   max used    (Mb)
+Ncells    647480   34.6    1713878    91.6         NA    1713878    91.6
+Vcells 965831712 7368.8 3306195628 25224.3      36864 4132741947 31530.4
+            used   (Mb) gc trigger    (Mb) limit (Mb)   max used    (Mb)
+Ncells    647494   34.6    1713878    91.6         NA    1713878    91.6
+Vcells 965833759 7368.8 2644956503 20179.5      36864 4132741947 31530.4
+2013-14, published computation (old filter, no wrap): n = 5659 
+participants with >= 1 partial day: 5650 (99.8%) 
+participants with misaligned pairs: 4896 (86.5%) ; share of pairs misaligned, median among affected: 0.167  mean: 0.234 
+participants losing Sat->Sun pairs: 5117 (90.4%) ; share lost, median among affected: 0.154 
+2013-14 rebuilt minus published (common n = 4796 ): quantiles
+    0%     5%    25%    50%    75%    95%   100% 
+-86.21  -9.39  -2.56   0.00   2.10   8.58  28.93 
+mean -0.289  r 0.9289 
+
+analytic sample (n = 7076 ): median published 61.45  median rebuilt 61.25  r 0.9622  mean diff (rebuilt - published) -0.404  mean |diff| 2.691 
+same quintile: 0.793  within 1 point: 0.407  exact: 0.228 
+QUANTIFY DONE

@@ -1,0 +1,21 @@
+
+==== cycle 2011_12  published n = 4879 ====
+current                          n= 5144  common= 4845  onlyPub=  34  onlyRep= 299  exact= 1795 (37.0% of common)  r=0.9834
+no1440                           n= 6034  common= 4854  onlyPub=  25  onlyRep=1180  exact=    0 (0.0% of common)  r=0.9331
+no1440_run5                      n= 5962  common= 4854  onlyPub=  25  onlyRep=1108  exact=    0 (0.0% of common)  r=0.9331
+run5                             n= 3800  common= 3698  onlyPub=1181  onlyRep= 102  exact= 1324 (35.8% of common)  r=0.9874
+daynonwear                       n= 4645  common= 4485  onlyPub= 394  onlyRep= 160  exact= 1450 (32.3% of common)  r=0.9703
+daynonwear_no1440                n= 5918  common= 4782  onlyPub=  97  onlyRep=1136  exact=    8 (0.2% of common)  r=0.9217
+daynonwear_no1440_run5_miss40    n= 5250  common= 4360  onlyPub= 519  onlyRep= 890  exact=    7 (0.2% of common)  r=0.9327
+miss40                           n= 5237  common= 4845  onlyPub=  34  onlyRep= 392  exact= 1795 (37.0% of common)  r=0.9834
+
+==== cycle 2013_14  published n = 5659 ====
+current                          n= 5454  common= 4722  onlyPub= 937  onlyRep= 732  exact=  509 (10.8% of common)  r=0.9379
+no1440                           n= 6494  common= 5637  onlyPub=  22  onlyRep= 857  exact=   NA (NA% of common)  r=NA
+no1440_run5                      n= 6443  common= 5637  onlyPub=  22  onlyRep= 806  exact=   NA (NA% of common)  r=NA
+run5                             n= 4008  common= 3457  onlyPub=2202  onlyRep= 551  exact=  509 (14.7% of common)  r=0.9624
+daynonwear                       n= 4917  common= 4537  onlyPub=1122  onlyRep= 380  exact=  639 (14.1% of common)  r=0.9500
+daynonwear_no1440                n= 6414  common= 5659  onlyPub=   0  onlyRep= 755  exact=   NA (NA% of common)  r=NA
+daynonwear_no1440_run5_miss40    n= 5661  common= 5659  onlyPub=   0  onlyRep=   2  exact=   NA (NA% of common)  r=NA
+miss40                           n= 5611  common= 4738  onlyPub= 921  onlyRep= 873  exact=  509 (10.7% of common)  r=0.9349
+FILTER VARIANTS DONE

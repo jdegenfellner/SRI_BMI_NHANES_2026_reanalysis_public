@@ -1,0 +1,22 @@
+
+==== cycle 2013_14  common n = 4819 ====
+variant A: exact   509 (10.6%)  within 0.5:   967  r = 0.9289  mean diff = -0.289
+variant B: exact     0 (0.0%)  within 0.5:   263  r = 0.9257  mean diff = -3.230
+variant C: exact   463 (9.7%)  within 0.5:   913  r = 0.9107  mean diff = -1.079
+variant D: exact     0 (0.0%)  within 0.5:   248  r = 0.9111  mean diff = -3.886
+variant E: exact     1 (0.0%)  within 0.5:   153  r = 0.9193  mean diff = -5.964
+variant F: exact   507 (10.5%)  within 0.5:   989  r = 0.9427  mean diff = -0.450
+variant A exact-match rate by unknown minutes == 0:
+   no_unknown     n exact
+       <lgcl> <int> <num>
+1:      FALSE  4819    NA
+variant A exact-match rate by non-wear minutes == 0:
+   no_nonwear     n exact
+       <lgcl> <int> <num>
+1:       TRUE  3655    NA
+2:      FALSE  1164  0.04
+variant A exact-match rate, neither unknown nor non-wear:
+    clean     n exact
+   <lgcl> <int> <num>
+1:  FALSE  4819    NA
+VARIANTS DONE

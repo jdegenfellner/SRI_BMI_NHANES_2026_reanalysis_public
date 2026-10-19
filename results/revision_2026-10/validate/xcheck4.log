@@ -1,0 +1,12 @@
+7-day participants: 4190 ; NA minutes quantiles: 134 301 483 1042 
+300 lowest-NA participants: max NA minutes 282 =  2.8 % of minutes
+          used (Mb) gc trigger   (Mb) limit (Mb)  max used   (Mb)
+Ncells  449876 24.1     926487   49.5         NA    717745   38.4
+Vcells 9882793 75.4  605645851 4620.8      36864 728622052 5559.0
+R side done, n = 300 
+py done 300
+n = 300 
+SRI_GGIR      vs hand: r 1.00000 mean diff -0.0000 SD 0.0001 max|diff| 0.0004 n 300
+SRI_sleepreg  vs hand: r 1.00000 mean diff 0.0038 SD 0.0107 max|diff| 0.0216 n 300
+SRI_pyact     vs hand: r 1.00000 mean diff 0.0000 SD 0.0000 max|diff| 0.0000 n 300
+medians: 71.91 71.91 71.91 71.91 

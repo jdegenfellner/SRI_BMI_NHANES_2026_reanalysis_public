@@ -1,0 +1,46 @@
+old filter function: lines 5 - 95 
+
+==================== cycle 2013_14 ====================
+old filter:  58465874 rows; 5659 SEQN; rows lost % 33.73 ; missingness 0.0399 
+loop vs vectorised (15 SEQN): max |diff| = 0 
+published n: 5659  old-filter n: 5659  common: 5657  only published: 0  only old-filter: 0 
+exact (<1e-6): 541 of 5657 (9.6%)  within 0.01: 558  r = 0.98481 
+     Min.   1st Qu.    Median      Mean   3rd Qu.      Max. 
+-31.92387  -1.70073  -0.07268  -0.48188   0.80222  89.06272 
+share of participants with at least one partial (non-1440) day in old-filter output: 0.998 
+exact-match rate by presence of partial days:
+   partial     n exact
+    <lgcl> <int> <num>
+1:    TRUE  5648 0.095
+2:   FALSE     9 0.667
+worst 5:
+    SEQN   SRI_pub       SRI         d   N_v ndays n_partial
+   <num>     <num>     <num>     <num> <int> <int>     <int>
+1: 74484 -76.44342 12.619300  89.06272   943     8         8
+2: 75150  55.20134 23.277467 -31.92387  1611     9         8
+3: 78526  18.08670 41.469649  23.38295  4695     6         1
+4: 81441 -13.05254  4.022775  17.07531  8079     8         1
+5: 79883  74.49248 57.564078 -16.92840  5189     7         2
+
+==================== cycle 2011_12 ====================
+old filter:  54337924 rows; 5250 SEQN; rows lost % 30.45 ; missingness 0.0403 
+loop vs vectorised (15 SEQN): max |diff| = 0 
+published n: 4879  old-filter n: 5250  common: 4360  only published: 519  only old-filter: 890 
+exact (<1e-6): 7 of 4360 (0.2%)  within 0.01: 17  r = 0.93266 
+    Min.  1st Qu.   Median     Mean  3rd Qu.     Max. 
+-36.5542  -3.2522  -0.6267  -0.7033   1.6379 110.1242 
+share of participants with at least one partial (non-1440) day in old-filter output: 0.998 
+exact-match rate by presence of partial days:
+   partial     n exact
+    <lgcl> <int> <num>
+1:    TRUE  4347 0.001
+2:   FALSE    13 0.231
+worst 5:
+    SEQN   SRI_pub      SRI         d   N_v ndays n_partial
+   <num>     <num>    <num>     <num> <int> <int>     <int>
+1: 71478 -59.90603 50.21813 110.12416  8481     8         3
+2: 66568  27.09133 64.09898  37.00765  7153     7         3
+3: 62760  39.11205 75.98005  36.86800  7219     8         4
+4: 66142  24.53469 61.21298  36.67829  4254     6         2
+5: 68009  80.65476 44.10058 -36.55418  9306     9         4
+OLD FILTER DONE

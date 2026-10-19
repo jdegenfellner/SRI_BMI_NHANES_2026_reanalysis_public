@@ -1,0 +1,9 @@
+  [raw] hand/GGIR 1000/7085 (2.5 min)
+  [raw] hand/GGIR 2000/7085 (5.1 min)
+  [raw] hand/GGIR 3000/7085 (7.7 min)
+  [raw] hand/GGIR 4000/7085 (10.5 min)
+  [raw] hand/GGIR 5000/7085 (13.3 min)
+  [raw] hand/GGIR 6000/7085 (16.6 min)
+  [raw] hand/GGIR 7000/7085 (19.6 min)
+[ raw ] hand+GGIR done
+[raw] DONE: hand median 61.3 | GGIR(filt) 61.4 | GGIR(unfilt) 43.8 | sleepreg5 65.4 (n=2253) | sleepreg3 61.6 (n=5051) | r(hand,GGIR) 0.993 r(hand,sleepreg5) 0.992

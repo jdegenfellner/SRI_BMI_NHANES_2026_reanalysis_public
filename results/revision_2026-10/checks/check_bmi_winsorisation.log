@@ -1,0 +1,78 @@
+
+== SRI_no_imputation : participants with SRI < -6.8 replaced: 8 
+                  sri                                        model logBMI
+               <char>                                       <char>  <num>
+ 1: SRI_no_imputation                                           M1 0.9228
+ 2: SRI_no_imputation                                           M2 0.9500
+ 3: SRI_no_imputation                                       M3_men 0.9816
+ 4: SRI_no_imputation                                     M3_women 0.9176
+ 5: SRI_no_imputation                      Mexican American / Male 1.0354
+ 6: SRI_no_imputation                    Mexican American / Female 0.9694
+ 7: SRI_no_imputation                        Other Hispanic / Male 0.9940
+ 8: SRI_no_imputation                      Other Hispanic / Female 0.9306
+ 9: SRI_no_imputation                    Non-Hispanic White / Male 0.9677
+10: SRI_no_imputation                  Non-Hispanic White / Female 0.9060
+11: SRI_no_imputation                    Non-Hispanic Black / Male 1.0364
+12: SRI_no_imputation                  Non-Hispanic Black / Female 0.9703
+13: SRI_no_imputation                    Non-Hispanic Asian / Male 0.9876
+14: SRI_no_imputation                  Non-Hispanic Asian / Female 0.9246
+15: SRI_no_imputation   Other Race - Including Multi-Racial / Male 0.9271
+16: SRI_no_imputation Other Race - Including Multi-Racial / Female 0.8680
+    logBMI_winsorised    diff
+                <num>   <num>
+ 1:            0.9238  0.0010
+ 2:            0.9509  0.0008
+ 3:            0.9810 -0.0006
+ 4:            0.9199  0.0023
+ 5:            1.0371  0.0017
+ 6:            0.9743  0.0049
+ 7:            0.9935 -0.0004
+ 8:            0.9334  0.0028
+ 9:            0.9667 -0.0011
+10:            0.9081  0.0021
+11:            1.0351 -0.0013
+12:            0.9725  0.0022
+13:            0.9818 -0.0058
+14:            0.9224 -0.0022
+15:            0.9350  0.0078
+16:            0.8784  0.0104
+max |diff| Models 1-3: 0.0023   Model 4: 0.0104 
+
+== SRI_hand : participants with SRI < -6.8 replaced: 8 
+         sri                                        model logBMI
+      <char>                                       <char>  <num>
+ 1: SRI_hand                                           M1 0.9263
+ 2: SRI_hand                                           M2 0.9554
+ 3: SRI_hand                                       M3_men 0.9870
+ 4: SRI_hand                                     M3_women 0.9223
+ 5: SRI_hand                      Mexican American / Male 1.0336
+ 6: SRI_hand                    Mexican American / Female 0.9675
+ 7: SRI_hand                        Other Hispanic / Male 1.0038
+ 8: SRI_hand                      Other Hispanic / Female 0.9395
+ 9: SRI_hand                    Non-Hispanic White / Male 0.9745
+10: SRI_hand                  Non-Hispanic White / Female 0.9122
+11: SRI_hand                    Non-Hispanic Black / Male 1.0345
+12: SRI_hand                  Non-Hispanic Black / Female 0.9683
+13: SRI_hand                    Non-Hispanic Asian / Male 0.9857
+14: SRI_hand                  Non-Hispanic Asian / Female 0.9226
+15: SRI_hand   Other Race - Including Multi-Racial / Male 0.9477
+16: SRI_hand Other Race - Including Multi-Racial / Female 0.8870
+    logBMI_winsorised    diff
+                <num>   <num>
+ 1:            0.9272  0.0009
+ 2:            0.9562  0.0007
+ 3:            0.9863 -0.0007
+ 4:            0.9245  0.0022
+ 5:            1.0333 -0.0003
+ 6:            0.9703  0.0029
+ 7:            1.0032 -0.0006
+ 8:            0.9421  0.0025
+ 9:            0.9736 -0.0009
+10:            0.9143  0.0021
+11:            1.0329 -0.0016
+12:            0.9700  0.0017
+13:            0.9805 -0.0052
+14:            0.9207 -0.0019
+15:            0.9561  0.0084
+16:            0.8978  0.0108
+max |diff| Models 1-3: 0.0022   Model 4: 0.0108 

@@ -1,0 +1,42 @@
+mode prefix: 1787 participants with all four series; sample 997 (prefix R = 1000, 3 excluded as failed)
+
+== SRI ==
+     series     n  mean    sd  diff    lo    hi trans  miss  sriB exclB
+     <char> <int> <num> <num> <num> <num> <num> <num> <num> <num> <num>
+1: PAXPREDM   997  58.1  17.6    NA    NA    NA  17.8 0.000  58.1   0.0
+2: GGIR SIB   997  70.2  12.0  12.1  11.3  12.9  19.5 0.013  69.3   0.3
+3: GGIR SPT   997  75.8  15.1  17.7  16.9  18.5   2.0 0.013  75.4   0.3
+4:     SWaN   997  68.3  16.0  10.1   9.5  10.8   3.0 0.008  67.5   0.0
+
+== agreement ==
+     series minutes       N agree dmiss kappa    lo    hi
+     <char>  <char>   <int> <num> <num> <num> <num> <num>
+1: GGIR SIB     all 8800645  87.8   1.3  0.74  0.73  0.74
+2: GGIR SIB     ism 3424464  75.4   3.0  0.48  0.47  0.49
+3: GGIR SIB     non 5376181  95.6   0.1  0.41  0.39  0.43
+4: GGIR SPT     all 8800645  88.2   1.3  0.75  0.74  0.76
+5: GGIR SPT     ism 3424464  78.4   3.0  0.50  0.49  0.52
+6: GGIR SPT     non 5376181  94.5   0.1  0.42  0.40  0.43
+7:     SWaN     all 8800645  89.4   0.8  0.77  0.76  0.77
+8:     SWaN     ism 3424464  79.9   1.7  0.54  0.53  0.55
+9:     SWaN     non 5376181  95.4   0.1  0.45  0.43  0.47
+
+== bouts (minutes) ==
+     series  state runs_pp median    q1    q3
+     <char> <char>   <num>  <num> <num> <num>
+1: GGIR SIB  sleep   109.9     13     6    27
+2: GGIR SIB   wake   306.9      6     2    20
+3: GGIR SPT  sleep   111.6     13     4    31
+4: GGIR SPT   wake   226.6     10     3    29
+5: PAXPREDM  sleep   148.7     12     4    27
+6: PAXPREDM   wake   224.5      8     3    25
+7:     SWaN  sleep    89.3     17     5    37
+8:     SWaN   wake   252.0     10     3    26
+
+== stability (mean difference to PAXPREDM) ==
+Key: <r, n>
+       r     n diff_GGIR_SIB diff_GGIR_SPT diff_SWaN
+   <num> <num>         <num>         <num>     <num>
+1:   500   497         11.47         17.34      9.65
+2:  1000   997         12.11         17.71     10.14
+macros: 106 -> <working tree>/01_recompute_SRI/intermediate/revision_2026-10_results/raw_interim/r1000/raw_derivation_numbers.tex 

@@ -1,0 +1,135 @@
+hz1 prod 62220 labels 0 acc 0 angle 0 swan 0 0 
+hz1 prod 63609 labels 0 acc 0 angle 0 swan 0 0 
+hz1 prod 64689 labels 0 acc 0 angle 0 swan 0 0 
+hz1 prod 64978 labels 0 acc 0 angle 0 swan 0 0.461 
+hz1 prod 65384 labels 0 acc 0 angle 0 swan 0 0.328 
+hz1 prod 66239 labels 0 acc 0 angle 0 swan 0 0.39 
+hz1 prod 66362 labels 0 acc 0.1 angle 1e-04 swan 0 0.001 
+hz1 prod 67315 labels 0 acc 0 angle 0 swan 0 0.278 
+hz1 prod 67644 labels 0 acc 0 angle 0 swan 0 0 
+hz1 prod 68708 labels 0 acc 0 angle 0 swan 0 0.001 
+hz1 prod 70715 labels 0 acc 0 angle 0 swan 0 0.368 
+hz1 prod 73725 labels 0 acc 0 angle 0 swan 0 0.411 
+hz1 prod 74007 labels 0 acc 0 angle 0 swan 0 0 
+hz1 prod 74196 labels 0 acc 0 angle 0 swan 0 0.024 
+hz1 prod 74928 labels 0 acc 0 angle 0 swan 0 0 
+hz1 prod 75558 labels 0 acc 0 angle 0 swan 0 0 
+hz1 prod 75563 labels 0 acc 0 angle 0 swan 0 0 
+hz1 prod 76253 labels 0 acc 0 angle 0 swan 0 0 
+hz1 prod 77120 labels 0 acc 0 angle 0 swan 0 0 
+hz1 prod 79217 labels 0 acc 0 angle 0 swan 0 0 
+hz1 prod 80267 labels 0 acc 0 angle 0 swan 0 0 
+hz1 prod 80550 labels 0 acc 0.1 angle 1e-04 swan 0 0.013 
+hz1 prod 82360 labels 0 acc 0 angle 0 swan 0 0 
+hz2 prod 66362 labels 0 acc 0.1 angle 1e-04 swan 0 0.001 
+hz2 prod 68708 labels 0 acc 0 angle 0 swan 0 0.001 
+hz2 prod 80550 labels 0 acc 0.1 angle 1e-04 swan 0 0.013 
+m1pro prod 63551 labels 0 acc 0 angle 0 swan 0 0 
+m1pro prod 64059 labels 0 acc 0 angle 0 swan 0 0 
+m1pro prod 65967 labels 0 acc 0 angle 0 swan 0 0 
+m1pro prod 66280 labels 0 acc 0 angle 0 swan 0 0 
+m1pro prod 68318 labels 0 acc 0 angle 0 swan 0 0 
+m1pro prod 74628 labels 0 acc 0 angle 0 swan 0 0 
+m1pro prod 76708 labels 0 acc 0 angle 0 swan 0 0 
+m1pro prod 77931 labels 0 acc 0 angle 0 swan 0 0 
+m1pro prod 78056 labels 0 acc 0 angle 0 swan 0 0 
+m1pro prod 79268 labels 0 acc 0 angle 0 swan 0 0 
+m1pro prod 82425 labels 0 acc 0 angle 0 swan 0 0 
+m1pro prod 82463 labels 0 acc 0 angle 0 swan 0 0 
+m1pro prod 82702 labels 0 acc 0 angle 0 swan 0 0 
+m1pro validation 66362 labels 0 acc 0 angle 0 swan 0 0 
+m1pro validation 68708 labels 0 acc 0 angle 0 swan 0 0 
+m1pro validation 80550 labels 0 acc 0 angle 0 swan 0 0 
+nhanes-prod1 out_check 66362 labels 4380 acc 1.5 angle 0.0893 swan 0 0.001 
+nhanes-prod1 out_check 68708 labels 2933 acc 1 angle 0.0368 swan 0 0.001 
+nhanes-prod1 out_check 75220 labels 2472 acc 1.1 angle 0.127 swan 0 0.001 
+nhanes-prod1 out_check 80550 labels 1215 acc 1.7 angle 0.103 swan 0 0.013 
+nhanes-prod1 out_check 83037 labels 10772 acc 2.7 angle 0.102 swan 0 0.001 
+nhanes-prod3 out_check 66362 labels 4380 acc 1.5 angle 0.0893 swan 0 0.001 
+nhanes-prod3 out_check 68708 labels 2933 acc 1 angle 0.0368 swan 0 0.001 
+nhanes-prod3 out_check 75220 labels 2472 acc 1.1 angle 0.127 swan 0 0.001 
+nhanes-prod3 out_check 80550 labels 1215 acc 1.7 angle 0.103 swan 0 0.013 
+nhanes-prod3 out_check 83037 labels 10772 acc 2.7 angle 0.102 swan 0 0.001 
+nhanes-prod3 prod 65753 labels 0 acc 0 angle 0 swan 0 0.283 
+nhanes-prod3 prod 75400 labels 0 acc 0 angle 0 swan 0 0 
+nhanes-prod3 prod 75993 labels 0 acc 0 angle 0 swan 0 0 
+nhanes-prod3 prod 76940 labels 0 acc 0 angle 0 swan 0 0 
+nhanes-prod3 prod 77489 labels 0 acc 0 angle 0 swan 0 0 
+nhanes-prod3 prod 82477 labels 0 acc 0 angle 0 swan 0 0 
+nhanes-prod4 out_check 66362 labels 4380 acc 1.5 angle 0.0893 swan 0 0.001 
+nhanes-prod4 out_check 68708 labels 2933 acc 1 angle 0.0368 swan 0 0.001 
+nhanes-prod4 out_check 75220 labels 2472 acc 1.1 angle 0.127 swan 0 0.001 
+nhanes-prod4 out_check 80550 labels 1215 acc 1.7 angle 0.103 swan 0 0.013 
+nhanes-prod4 out_check 83037 labels 10772 acc 2.7 angle 0.102 swan 0 0.001 
+nhanes-prod5 out_check 66362 labels 4380 acc 1.5 angle 0.0893 swan 0 0.001 
+nhanes-prod5 out_check 68708 labels 2933 acc 1 angle 0.0368 swan 0 0.001 
+nhanes-prod5 out_check 75220 labels 2472 acc 1.1 angle 0.127 swan 0 0.001 
+nhanes-prod5 out_check 80550 labels 1215 acc 1.7 angle 0.103 swan 0 0.013 
+nhanes-prod5 out_check 83037 labels 10772 acc 2.7 angle 0.102 swan 0 0.001 
+nhanes-test2 out_check 66362 labels 4380 acc 1.5 angle 0.0893 swan 0 0.001 
+nhanes-test2 out_check 68708 labels 2933 acc 1 angle 0.0368 swan 0 0.001 
+nhanes-test2 out_check 75220 labels 2472 acc 1.1 angle 0.127 swan 0 0.001 
+nhanes-test2 out_check 80550 labels 1215 acc 1.7 angle 0.103 swan 0 0.013 
+nhanes-test2 out_check 83037 labels 10772 acc 2.7 angle 0.102 swan 0 0.001 
+nhanes-test2 out_cc2 63698 labels 0 acc 0 angle 0 swan 0 0.001 
+nhanes-test2 out_cc2 63848 labels 0 acc 0 angle 0 swan 0 0.001 
+nhanes-test2 out_cc2 68035 labels 0 acc 0 angle 1e-04 swan 0 0.001 
+nhanes-test2 out_cc2 70773 labels 0 acc 0 angle 0 swan 0 0.001 
+nhanes-test2 out_cc2 75260 labels 0 acc 0.1 angle 1e-04 swan 0 0.001 
+nhanes-test2 out_cc2 76439 labels 0 acc 0 angle 0 swan 0 0.013 
+nhanes-test2 out_cc2 77524 labels 0 acc 0 angle 0 swan 0 0.001 
+nhanes-test2 out_cc2 81523 labels 0 acc 0.1 angle 1e-04 swan 0 0.001 
+nhanes-test2 out_cc2 82143 labels 0 acc 0 angle 1e-04 swan 0 0.001 
+vu1 prod 62669 labels 0 acc 0 angle 0 swan 0 0.342 
+vu1 prod 63297 labels 42 acc 0.1 angle 0.0019 swan 0 0 
+vu1 prod 63349 labels 0 acc 0 angle 0 swan 0 0.001 
+vu1 prod 64058 labels 0 acc 0 angle 0 swan 0 0 
+vu1 prod 64520 labels 0 acc 0 angle 0 swan 0 0 
+vu1 prod 65838 labels 14 acc 0.1 angle 0.0014 swan 0 0.448 
+vu1 prod 66362 labels 0 acc 0.1 angle 1e-04 swan 0 0.001 
+vu1 prod 67225 labels 0 acc 0.1 angle 1e-04 swan 0 0 
+vu1 prod 67243 labels 1 acc 0.1 angle 0.003 swan 0 0 
+vu1 prod 67879 labels 0 acc 0 angle 1e-04 swan 0 0.001 
+vu1 prod 68356 labels 0 acc 0 angle 0 swan 0 0 
+vu1 prod 68703 labels 0 acc 0 angle 1e-04 swan 0 0 
+vu1 prod 68708 labels 0 acc 0 angle 0 swan 0 0.001 
+vu1 prod 68933 labels 0 acc 0 angle 0 swan 0 0 
+vu1 prod 71915 labels 0 acc 0.1 angle 1e-04 swan 0 0 
+vu1 prod 76561 labels 0 acc 0 angle 0 swan 0 0.001 
+vu1 prod 77900 labels 0 acc 0 angle 0 swan 0 0 
+vu1 prod 79022 labels 0 acc 0 angle 0 swan 0 0 
+vu1 prod 80550 labels 0 acc 0.1 angle 1e-04 swan 0 0.013 
+vu1 prod 81147 labels 0 acc 0 angle 0 swan 0 0 
+vu1 prod 82996 labels 0 acc 0 angle 0 swan 0 0.001 
+vu1 prod 83252 labels 0 acc 0 angle 0 swan 0 0 
+vu1 prod 83398 labels 0 acc 0 angle 0 swan 0 0 
+
+== genuine duplicates by machine and folder ==
+         machine     folder duplicates ggir_labels_identical max_label_diff
+          <char>     <char>      <int>                 <int>          <int>
+ 1:          hz1       prod         23                    23              0
+ 2:          hz2       prod          3                     3              0
+ 3:        m1pro       prod         13                    13              0
+ 4:        m1pro validation          3                     3              0
+ 5: nhanes-prod1  out_check          5                     0          10772
+ 6: nhanes-prod3  out_check          5                     0          10772
+ 7: nhanes-prod3       prod          6                     6              0
+ 8: nhanes-prod4  out_check          5                     0          10772
+ 9: nhanes-prod5  out_check          5                     0          10772
+10: nhanes-test2    out_cc2          9                     9              0
+11: nhanes-test2  out_check          5                     0          10772
+12:          vu1       prod         23                    20             42
+    acc_max_mg angle_max_deg swan_classes_identical swan_prob_max
+         <num>         <num>                  <int>         <num>
+ 1:        0.1        0.0001                     23         0.461
+ 2:        0.1        0.0001                      3         0.013
+ 3:        0.0        0.0000                     13         0.000
+ 4:        0.0        0.0000                      3         0.000
+ 5:        2.7        0.1270                      5         0.013
+ 6:        2.7        0.1270                      5         0.013
+ 7:        0.0        0.0000                      6         0.283
+ 8:        2.7        0.1270                      5         0.013
+ 9:        2.7        0.1270                      5         0.013
+10:        0.1        0.0001                      9         0.013
+11:        2.7        0.1270                      5         0.013
+12:        0.1        0.0030                     23         0.448

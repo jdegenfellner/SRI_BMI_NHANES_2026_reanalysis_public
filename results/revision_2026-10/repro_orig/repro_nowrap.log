@@ -1,0 +1,29 @@
+=== (a) rebuilt series (today's filter), pairing with vs without Sat->Sun wrap ===
+cycle 2011_12 
+  today filter, wrap (= manuscript hand SRI) n= 5243 common= 4879 onlyPub=   0 onlyRep= 341 exact= 1803 (37.0%) within0.01= 1813 r=0.98317
+  today filter, NO wrap                    n= 5243 common= 4879 onlyPub=   0 onlyRep= 329 exact= 4879 (100.0%) within0.01= 4879 r=1.00000
+cycle 2013_14 
+  today filter, wrap (= manuscript hand SRI) n= 5562 common= 4796 onlyPub= 861 onlyRep= 741 exact=  509 (10.6%) within0.01=  518 r=0.92890
+  today filter, NO wrap                    n= 5562 common= 4780 onlyPub= 877 onlyRep= 741 exact=  515 (10.8%) within0.01=  528 r=0.94351
+
+=== (b) filter function of 2.1_Calculate_SRI_manually.R verbatim, pairing with vs without wrap ===
+2.1 filter function lines 110 - 249 
+`summarise()` has regrouped the output.
+ℹ Summaries were computed grouped by SEQN and PAXDAYM.
+ℹ Output is grouped by SEQN.
+ℹ Use `summarise(.groups = "drop_last")` to silence this message.
+ℹ Use `summarise(.by = c(SEQN, PAXDAYM))` for per-operation grouping
+  (`?dplyr::dplyr_by`) instead.
+cycle 2011_12 : 2.1-filter n = 4879 
+  2.1 filter, wrap                         n= 4879 common= 4879 onlyPub=   0 onlyRep=   0 exact= 1803 (37.0%) within0.01= 1813 r=0.98317
+  2.1 filter, NO wrap                      n= 4879 common= 4879 onlyPub=   0 onlyRep=   0 exact= 4879 (100.0%) within0.01= 4879 r=1.00000
+`summarise()` has regrouped the output.
+ℹ Summaries were computed grouped by SEQN and PAXDAYM.
+ℹ Output is grouped by SEQN.
+ℹ Use `summarise(.groups = "drop_last")` to silence this message.
+ℹ Use `summarise(.by = c(SEQN, PAXDAYM))` for per-operation grouping
+  (`?dplyr::dplyr_by`) instead.
+cycle 2013_14 : 2.1-filter n = 5156 
+  2.1 filter, wrap                         n= 5156 common= 4597 onlyPub=1060 onlyRep= 559 exact=  509 (11.1%) within0.01=  518 r=0.93649
+  2.1 filter, NO wrap                      n= 5156 common= 4596 onlyPub=1061 onlyRep= 559 exact=  515 (11.2%) within0.01=  528 r=0.94930
+NOWRAP DONE
