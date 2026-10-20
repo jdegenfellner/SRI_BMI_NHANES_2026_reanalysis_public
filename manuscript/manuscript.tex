@@ -60,19 +60,16 @@ and the Phillips formula, \texttt{GGIR} and \texttt{sleepreg} were applied to
 each. The survey-weighted $\log$-BMI models were refitted and the calculators
 tested on synthetic recordings.
 For a random sample of \rawPrefixR{} participants the series was derived anew
-from the 80\,Hz raw signal with \texttt{GGIR} and with the public SWaN code.
+from the 80\,Hz raw signal with \texttt{GGIR} and the public SWaN code.
 
-\noindent\textbf{Results.} The rebuilt series correlated $0.96$ with the
-published SRI values. The released classification changed
-between sleep and wake a median of 16 times per day. Smoothing raised the median SRI from 61 to 68--76. On the same input the calculators agreed to 0.1 points on average. As a percentage difference in BMI between the top and bottom SRI quintile, the fully adjusted multiplication factor was $-4.5\%$ for the released series and $-2.8\%$ to $-3.7\%$ after smoothing. SWaN rerun on the raw signal of the random sample changed state \rawSwanTransDay{} times per day (mean) against \rawPaxpredmTransDay{} for the release. The three series derived anew with \texttt{GGIR} and SWaN scored \rawSwanDiffMean{} to \rawGgirSptDiffMean{} points higher than the release. In this sample the same percentage difference moved from $-4.8\%$ for the released classification to between $-0.7\%$ and $+0.4\%$ for the derived series. In a
-synthetic recording with an SRI of $68.75$, deleting one day instead of
-marking it as missing made \texttt{sleepreg} return $35.18$ without warning. Its default minimum of five valid days left 48\% of participants without a
-value.
+\noindent\textbf{Results.} The released classification switched
+between sleep and wake a median of 16 times per day. Smoothing raised the median SRI from 61 to 68--76. On the same input the calculators agreed to 0.1 points. The fully adjusted difference in BMI between the top and bottom SRI quintile was $-4.5\%$ for the released series and $-2.8\%$ to $-3.7\%$ after smoothing. In the random sample, SWaN rerun on the raw signal switched state \rawSwanTransDay{} times per day against \rawPaxpredmTransDay{} for the release. The derived series scored \rawSwanDiffMean{} to \rawGgirSptDiffMean{} points higher. The same difference in BMI was $-4.8\%$ for the released classification and $-0.7\%$ to $+0.4\%$ for the derived series. Deleting one day of a
+synthetic recording (SRI $68.75$) instead of marking it as missing made \texttt{sleepreg} return $35.18$ without warning. Its default minimum of five valid days left 48\% of participants unscored.
 
 \noindent\textbf{Conclusions.} The SRI level depended on the input and only
 marginally on the calculator. The released classification is
-more fragmented than a new classification of the same signal with the same algorithm's public code. The inverse association with BMI weakened with every smoothed and newly derived input. Reports should describe the
-derivation and smoothing of the series, the treatment of gaps, the minimum-day rule and the remaining sample. The code should be archived.
+more fragmented than a new classification of the same signal with the algorithm's public code. The inverse association with BMI weakened with every smoothed and newly derived input. Reports should describe the
+derivation and smoothing of the series, the treatment of gaps, the minimum-day rule and the remaining sample, and archive the code.
 
 \vspace{0.6em}
 \noindent\textbf{Keywords:} sleep regularity index; NHANES; accelerometry; wearable monitors; \texttt{GGIR};
